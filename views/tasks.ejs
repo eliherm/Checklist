@@ -4,7 +4,7 @@
         <%- include('partials/head') %>
         <link href="/src/css/layout.css" rel="stylesheet">
         <link href="/src/css/tasks.css" rel="stylesheet">
-        <script src="/src/js/tasks.js" defer></script>
+        <script src="/src/js/dist/tasks.js" defer></script>
     </head>
 
     <body>
@@ -20,7 +20,7 @@
 
             <section class="post-task">
                 <div class="post-item">
-                    <form class="post-task-form" action="javascript:submitTask()" autocomplete="off" novalidate>
+                    <form class="post-task-form" action="javascript:" autocomplete="off" novalidate>
                         <label for="description"></label>
                         <input type="text" id="description" name="description" placeholder="Add a new task ..." required>
                     </form>

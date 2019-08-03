@@ -4,10 +4,11 @@
   "description": "A simple checklist application",
   "main": "index.js",
   "scripts": {
-    "prestart": "clear",
-    "start": "nodemon index.js",
-    "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "clear && NODE_ENV=development parcel build ./client/src/js/tasks.js --no-minify --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
+    "start": "node index.js",
+    "build-watch": "clear && parcel watch ./client/src/js/tasks.js --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
+    "dev:start": "clear && nodemon index.js",
+    "lint": "eslint ."
   },
   "keywords": [
     "checklist",
@@ -19,6 +20,7 @@
     "bcrypt": "^3.0.6",
     "chalk": "^2.4.2",
     "connect-redis": "^3.4.2",
+    "core-js": "^3.1.4",
     "dotenv": "^8.0.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
@@ -29,9 +31,11 @@
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "regenerator-runtime": "^0.13.3",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "eslint": "^6.0.1"
   }
