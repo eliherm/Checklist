@@ -1,0 +1,139 @@
+.register-box{
+    width: 400px;
+    margin: 3em auto 0;
+    padding: 2em 0 2em;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+}
+.register-box > h2 {
+    margin: 0 0 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    font-weight: 500;
+    text-align: center;
+    color: #111111;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto 0;
+}
+form > input {
+    height: 20px;
+    margin-bottom: 1em;
+    padding: 5px;
+    border: 1px solid #D8D8D8;
+    border-radius: 3px;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #111111;
+    background: #f7f7f7;
+}
+form > input:focus {
+    border: 1px solid #B9B9B9;
+}
+form > input::placeholder {
+    font-weight: 300;
+}
+#submit-btn {
+    /*height: 30px;*/
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: center;
+    color: #f7f7f7;
+    background: #301984;
+}
+#submit-btn:active {
+    background: #4A3693;
+}
+.error-box {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 400px;
+    margin: 1em auto 1em;
+    padding: 1em 0 1em;
+    border: 1px solid #3E3E3E;
+    background: #3E3E3E;
+
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+.error-box > p {
+    margin: 0 0 1em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #f7f7f7;
+}
+.error-box-last {
+    margin: 0 !important;
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.login-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    margin: 1em auto 3em;
+    padding: 1em 0 1em;
+    border: 1px solid #D8D8D8;
+    background: #fff;
+}
+.login-box > p {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #111111;
+}
+.login-box > p > a {
+    text-decoration: none;
+    font-weight: 400;
+    color: #911515;
+}

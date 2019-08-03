@@ -1,0 +1,14 @@
+.placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 60%;
+    margin: 80px auto 2em;
+    height: 200px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    color: #f7f7f7;
+    background: #bfbfbf;
+}

@@ -1,0 +1,5 @@
+node_modules
+.env
+client/audio
+client/images
+api/db/er-diagrams

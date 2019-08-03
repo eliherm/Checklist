@@ -1,0 +1,10 @@
+<header>
+    <nav>
+        <h1><a href="/">Checklist</a></h1>
+        <ul class="nav-ul">
+            <% links.forEach(link => { %>
+                <li id="nav-link" class="<%= link.class %>"><a href=<%= link.href %>><%= link.name %></a></li>
+            <% }); %>
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('partials/head') %>
+        <link href="/src/css/layout.css" rel="stylesheet">
+        <link href="/src/css/tasks.css" rel="stylesheet">
+        <script src="/src/js/tasks.js" defer></script>
+    </head>
+
+    <body>
+        <% let links = [{ name: 'Tasks', href: '/tasks', class: 'active-nav-link' }, { name: 'Account', href: '/account', class: '' }, { name: 'Logout', href: '/logout', class: 'logout-link' }] %>
+        <%- include('partials/navigation', {links: links}) %>
+
+        <main role="main">
+            <section class="page-heading">
+                <img src="/images/bread-100.png" alt="Bread emoji">
+                <h2>Let's Get This Bread</h2>
+                <img src="/images/bread-100-rev.png" alt="Bread emoji">
+            </section>
+
+            <section class="post-task">
+                <div class="post-item">
+                    <form class="post-task-form" action="javascript:submitTask()" autocomplete="off" novalidate>
+                        <label for="description"></label>
+                        <input type="text" id="description" name="description" placeholder="Add a new task ..." required>
+                    </form>
+
+                    <div class="post-starred-box">
+                        <i class="far fa-star icon" id="post-star"></i>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tasks-list"></section>
+        </main>
+
+        <%- include('partials/footer') %>
+    </body>
+</html>

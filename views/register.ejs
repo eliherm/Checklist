@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('partials/head') %>
+        <link href="/src/css/layout.css" rel="stylesheet">
+        <link href="/src/css/register.css" rel="stylesheet">
+        <script src="/src/js/register.js" defer></script>
+    </head>
+
+    <body>
+        <% let links = [{ name: 'Register', href: '/register', class: 'active-nav-link' }] %>
+        <%- include('partials/navigation', {links: links}) %>
+
+        <main role="main">
+            <section class="register-box">
+                <h2>Register</h2>
+
+                <form class="register-form" action="javascript:submitForm()">
+                    <label for="firstName"></label>
+                    <input type="text" id="firstName" name="firstName" autocomplete="name" placeholder="First Name" required>
+                    <label for="lastName"></label>
+                    <input type="text" id="lastName" name="lastName" autocomplete="name" placeholder="Last Name">
+                    <label for="userName"></label>
+                    <input type="text" id="userName" name="userName" autocomplete="username" placeholder="Username" required>
+                    <label for="email"></label>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="Email" required>
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" autocomplete="password" placeholder="Password" minlength="6" required>
+                    <label for="passwordConfirm"></label>
+                    <input type="password" id="passwordConfirm" name="passwordConfirm" autocomplete="password" placeholder="Confirm Password"  minlength="6" required>
+                    <button type="submit" id="submit-btn">Register</button>
+                </form>
+            </section>
+
+            <section class="error-box"></section>
+
+            <section class="login-box">
+                <p>Already have an account? <a href="/login">Log In</a></p>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+    </body>
+</html>

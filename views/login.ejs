@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('partials/head') %>
+        <link href="/src/css/layout.css" rel="stylesheet">
+        <link href="/src/css/login.css" rel="stylesheet">
+        <script src="/src/js/login.js" defer></script>
+    </head>
+
+    <body>
+        <% let links = [{ name: 'Login', href: '/login', class: 'active-nav-link' }] %>
+        <%- include('partials/navigation', {links: links}) %>
+
+        <main role="main">
+            <section class="login-box">
+                <h2>Log In</h2>
+
+                <form class="login-form" action="javascript:submitForm()" >
+                    <label for="userName"></label>
+                    <input type="text" id="userName" name="userName" autocomplete="username" placeholder="Username" required>
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Password" required>
+                    <button type="submit" id="submit-btn">Log In</button>
+                </form>
+            </section>
+
+            <section class="error-box">
+                <p>Incorrect username or password</p>
+            </section>
+
+            <section class="register-box">
+                <p>Don't have an account? <a href="/register">Register</a></p>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+    </body>
+</html>

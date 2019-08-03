@@ -1,0 +1,233 @@
+.page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 80px auto 0;
+    width: 60%;
+}
+.page-heading > h2 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.5em;
+    color: #911515;
+}
+.page-heading > img {
+    width: 45px;
+    height: 45px;
+
+    margin: 0 13px 0;
+}
+.post-task {
+    width: 60%;
+    margin: 1em auto 1em;
+}
+.post-item {
+    display: grid;
+    grid-template:
+            "input starred" auto
+        / 95% 5%;
+
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 3px;
+    background: #7B7B7B;
+}
+.post-task-form > input {
+    grid-area: input;
+    justify-self: center;
+    align-self: center;
+
+    width: 90%;
+    height: 20px;
+    padding: 10px 15px 10px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #f7f7f7;
+    background: #7B7B7B;
+}
+.post-task-form > input::placeholder {
+    color: #f7f7f7;
+}
+.post-starred-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-area: starred;
+    justify-self: center;
+    align-self: center;
+
+    height: 20px;
+    width: 30px;
+}
+.post-starred-box > i {
+    cursor: pointer;
+    font-size: 15px;
+    color: #f7f7f7;
+}
+
+.tasks-list {
+    width: 60%;
+    margin: 0 auto 80px;
+}
+.task-item {
+    display: grid;
+    grid-template:
+        "completed description modifyBtn starred" auto
+        "modify modify modify modify" auto
+        / 5% 85% 5% 5%;
+
+    width: 100%;
+    margin-bottom: 5px;
+    border: 1px solid #D8D8D8;
+    border-radius: 3px;
+    background: #fff;
+}
+.task-item-complete {
+    background: #D8D8D8;
+}
+.completed-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-area: completed;
+    justify-self: center;
+    align-self: center;
+
+    height: 30px;
+    width: 100%;
+}
+.completed-box > .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: inset 0 0 3px #B9B9B9;
+    background: #f7f7f7;
+}
+.checkbox-complete {
+    box-shadow: inset 0 0 5px #9A9A9A !important;
+    background: #D8D8D8 !important;
+}
+.description-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    grid-area: description;
+    justify-self: center;
+    align-self: center;
+
+    height: 30px;
+    width: 100%;
+}
+.description-box > p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    margin: 0 5px 0;
+
+    /* Disable text selection */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+.description-complete {
+    text-decoration: line-through;
+    color: #9A9A9A;
+}
+.starred-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-area: starred;
+    justify-self: center;
+    align-self: center;
+
+    height: 20px;
+    width: 30px;
+}
+.starred-box > i {
+    cursor: pointer;
+    font-size: 15px;
+    color: #911515;
+}
+.modifyBtn-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-area: modifyBtn;
+    justify-self: center;
+    align-self: center;
+
+    height: 20px;
+    width: 30px;
+}
+.modifyBtn-box > i {
+    cursor: pointer;
+    font-size: 15px;
+    color:  #911515;
+}
+.modify-box {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    grid-area: modify;
+    justify-self: center;
+    align-self: center;
+
+    height: 100px;
+    width: 100%;
+    border: 1px solid #7B7B7B;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    /*background: #ffffff;*/
+    background: #7B7B7B;
+}
+.show-modify-box {
+    display: flex;
+}
+.modify-box > i {
+    cursor: pointer;
+    font-size: 15px;
+    color: #f7f7f7;
+}
+.modify-task-form > input {
+    grid-area: input;
+    justify-self: center;
+    align-self: center;
+
+    width: 500px;
+    height: 20px;
+    margin: 0 20px 0;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #111111;
+    box-shadow: inset 0 0 10px #B9B9B9;
+    background: #f7f7f7;
+}
+.modify-task-form > input::placeholder {
+    color: #7B7B7B;
+}
