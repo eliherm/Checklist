@@ -1,11 +1,11 @@
 module.exports = {
   description: {
     in: ['body'],
+    trim: true,
     isEmpty: {
       negated: true,
       errorMessage: 'The description field is required'
     },
-    trim: true,
     escape: true
   },
   completed: {

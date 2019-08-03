@@ -1,11 +1,11 @@
 module.exports = {
   firstName: {
     in: ['body'],
+    trim: true,
     isEmpty: {
       negated: true,
       errorMessage: 'The first name field is required'
     },
-    trim: true,
     escape: true
   },
   lastName: {
@@ -16,11 +16,11 @@ module.exports = {
   },
   userName: {
     in: ['body'],
+    trim: true,
     isEmpty: {
       negated: true,
       errorMessage: 'The user name field is required'
     },
-    trim: true,
     escape: true
   },
   email: {
