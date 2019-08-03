@@ -1,5 +1,7 @@
 node_modules
 .env
+api/db/er-diagrams
 client/audio
 client/images
-api/db/er-diagrams
+client/src/js/cache
+.idea/
