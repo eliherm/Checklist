@@ -15347,42 +15347,11 @@ module.exports.default = exports.default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validatePost = exports.extractForm = void 0;
+exports.validatePost = void 0;
 
 var _validator = _interopRequireDefault(require("validator"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var extractForm = function extractForm(form) {
-  var formInfo = {};
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = form.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var field = _step.value;
-      formInfo[field[0]] = field[1];
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  return formInfo;
-};
-
-exports.extractForm = extractForm;
 
 var validatePost = function validatePost(form) {
   var userName = form.get('userName');
@@ -15469,7 +15438,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61855" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58580" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
