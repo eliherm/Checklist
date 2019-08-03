@@ -7,7 +7,7 @@
     "prestart": "clear && NODE_ENV=development parcel build ./client/src/js/*.js --no-minify --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
     "start": "node index.js",
     "build-watch": "clear && parcel watch ./client/src/js/*.js --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
-    "dev:start": "clear && nodemon index.js",
+    "dev:start": "clear && nodemon index.js --ignore ./client/src/js",
     "lint": "eslint ."
   },
   "keywords": [
