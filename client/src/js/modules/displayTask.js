@@ -1,6 +1,8 @@
+import validator from 'validator';
+
 // Import local modules
 import { deleteTask, updateTask } from './ajax';
-import { toggleStar } from './tasks-util';
+import { toggleStar, validatePost } from './tasks-util';
 
 // Import sound effects
 let completeAudio = new Audio('/audio/complete.wav');
@@ -39,7 +41,7 @@ export const displayTask = (task) => {
   let modifyInput = document.createElement('input');
 
   checkboxDiv.classList.add('checkbox');
-  descriptionPara.appendChild(document.createTextNode(task.description));
+  descriptionPara.appendChild(document.createTextNode(validator.unescape(task.description)));
   modifyIcon.classList.add('far', 'fa-edit');
 
   if (task.completed === 1) {
@@ -134,14 +136,15 @@ export const displayTask = (task) => {
   modifyInput.addEventListener('keydown', event => {
     if (event.code === 'Enter') {
       let formData = new FormData(modifyForm);
-      modifyInput.value = '';
-      let description = formData.get('description').trim();
+      let validationResult = validatePost(formData.get('description'));
 
-      if (description !== '') {
-        let taskUpdate = { description: description };
+      modifyInput.value = '';
+
+      if (validationResult.isValid) {
+        let taskUpdate = { description: validationResult.description };
         updateTask(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then((serverResponse) => {
           if (serverResponse.success) {
-            descriptionPara.replaceChild(document.createTextNode(description), descriptionPara.firstChild);
+            descriptionPara.replaceChild(document.createTextNode(validator.unescape(validationResult.description)), descriptionPara.firstChild);
           } else {
             console.error(serverResponse);
           }

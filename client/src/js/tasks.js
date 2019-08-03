@@ -5,7 +5,7 @@ import 'regenerator-runtime/runtime';
 // Import local modules
 import { getTasks, postTask } from './modules/ajax.js';
 import { displayTask } from './modules/displayTask';
-import { toggleStar } from './modules/tasks-util';
+import { toggleStar, validatePost  } from './modules/tasks-util';
 
 const postTaskForm = document.querySelector('.post-task-form');
 const formInput = document.querySelector('#description');
@@ -29,9 +29,10 @@ const clearInputs = (option) => {
 
 const submitTask = () => {
   let formData = new FormData(postTaskForm);
-  formData.set('description', formData.get('description').trim()); // Trim input
+  let validationResult = validatePost(formData.get('description'));
 
-  if (formData.get('description') !== '') {
+  if (validationResult.isValid) {
+    formData.set('description', validationResult.description);
     formData.set('completed', '0');
 
     if (postStarred.classList.contains('fas')) {
