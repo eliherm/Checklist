@@ -15341,294 +15341,107 @@ var _default = validator;
 exports.default = _default;
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./lib/toDate":"../../../node_modules/validator/lib/toDate.js","./lib/toFloat":"../../../node_modules/validator/lib/toFloat.js","./lib/toInt":"../../../node_modules/validator/lib/toInt.js","./lib/toBoolean":"../../../node_modules/validator/lib/toBoolean.js","./lib/equals":"../../../node_modules/validator/lib/equals.js","./lib/contains":"../../../node_modules/validator/lib/contains.js","./lib/matches":"../../../node_modules/validator/lib/matches.js","./lib/isEmail":"../../../node_modules/validator/lib/isEmail.js","./lib/isURL":"../../../node_modules/validator/lib/isURL.js","./lib/isMACAddress":"../../../node_modules/validator/lib/isMACAddress.js","./lib/isIP":"../../../node_modules/validator/lib/isIP.js","./lib/isIPRange":"../../../node_modules/validator/lib/isIPRange.js","./lib/isFQDN":"../../../node_modules/validator/lib/isFQDN.js","./lib/isBoolean":"../../../node_modules/validator/lib/isBoolean.js","./lib/isAlpha":"../../../node_modules/validator/lib/isAlpha.js","./lib/isAlphanumeric":"../../../node_modules/validator/lib/isAlphanumeric.js","./lib/isNumeric":"../../../node_modules/validator/lib/isNumeric.js","./lib/isPort":"../../../node_modules/validator/lib/isPort.js","./lib/isLowercase":"../../../node_modules/validator/lib/isLowercase.js","./lib/isUppercase":"../../../node_modules/validator/lib/isUppercase.js","./lib/isAscii":"../../../node_modules/validator/lib/isAscii.js","./lib/isFullWidth":"../../../node_modules/validator/lib/isFullWidth.js","./lib/isHalfWidth":"../../../node_modules/validator/lib/isHalfWidth.js","./lib/isVariableWidth":"../../../node_modules/validator/lib/isVariableWidth.js","./lib/isMultibyte":"../../../node_modules/validator/lib/isMultibyte.js","./lib/isSurrogatePair":"../../../node_modules/validator/lib/isSurrogatePair.js","./lib/isInt":"../../../node_modules/validator/lib/isInt.js","./lib/isFloat":"../../../node_modules/validator/lib/isFloat.js","./lib/isDecimal":"../../../node_modules/validator/lib/isDecimal.js","./lib/isHexadecimal":"../../../node_modules/validator/lib/isHexadecimal.js","./lib/isDivisibleBy":"../../../node_modules/validator/lib/isDivisibleBy.js","./lib/isHexColor":"../../../node_modules/validator/lib/isHexColor.js","./lib/isISRC":"../../../node_modules/validator/lib/isISRC.js","./lib/isMD5":"../../../node_modules/validator/lib/isMD5.js","./lib/isHash":"../../../node_modules/validator/lib/isHash.js","./lib/isJWT":"../../../node_modules/validator/lib/isJWT.js","./lib/isJSON":"../../../node_modules/validator/lib/isJSON.js","./lib/isEmpty":"../../../node_modules/validator/lib/isEmpty.js","./lib/isLength":"../../../node_modules/validator/lib/isLength.js","./lib/isByteLength":"../../../node_modules/validator/lib/isByteLength.js","./lib/isUUID":"../../../node_modules/validator/lib/isUUID.js","./lib/isMongoId":"../../../node_modules/validator/lib/isMongoId.js","./lib/isAfter":"../../../node_modules/validator/lib/isAfter.js","./lib/isBefore":"../../../node_modules/validator/lib/isBefore.js","./lib/isIn":"../../../node_modules/validator/lib/isIn.js","./lib/isCreditCard":"../../../node_modules/validator/lib/isCreditCard.js","./lib/isIdentityCard":"../../../node_modules/validator/lib/isIdentityCard.js","./lib/isISIN":"../../../node_modules/validator/lib/isISIN.js","./lib/isISBN":"../../../node_modules/validator/lib/isISBN.js","./lib/isISSN":"../../../node_modules/validator/lib/isISSN.js","./lib/isMobilePhone":"../../../node_modules/validator/lib/isMobilePhone.js","./lib/isCurrency":"../../../node_modules/validator/lib/isCurrency.js","./lib/isISO8601":"../../../node_modules/validator/lib/isISO8601.js","./lib/isRFC3339":"../../../node_modules/validator/lib/isRFC3339.js","./lib/isISO31661Alpha2":"../../../node_modules/validator/lib/isISO31661Alpha2.js","./lib/isISO31661Alpha3":"../../../node_modules/validator/lib/isISO31661Alpha3.js","./lib/isBase32":"../../../node_modules/validator/lib/isBase32.js","./lib/isBase64":"../../../node_modules/validator/lib/isBase64.js","./lib/isDataURI":"../../../node_modules/validator/lib/isDataURI.js","./lib/isMagnetURI":"../../../node_modules/validator/lib/isMagnetURI.js","./lib/isMimeType":"../../../node_modules/validator/lib/isMimeType.js","./lib/isLatLong":"../../../node_modules/validator/lib/isLatLong.js","./lib/isPostalCode":"../../../node_modules/validator/lib/isPostalCode.js","./lib/ltrim":"../../../node_modules/validator/lib/ltrim.js","./lib/rtrim":"../../../node_modules/validator/lib/rtrim.js","./lib/trim":"../../../node_modules/validator/lib/trim.js","./lib/escape":"../../../node_modules/validator/lib/escape.js","./lib/unescape":"../../../node_modules/validator/lib/unescape.js","./lib/stripLow":"../../../node_modules/validator/lib/stripLow.js","./lib/whitelist":"../../../node_modules/validator/lib/whitelist.js","./lib/blacklist":"../../../node_modules/validator/lib/blacklist.js","./lib/isWhitelisted":"../../../node_modules/validator/lib/isWhitelisted.js","./lib/normalizeEmail":"../../../node_modules/validator/lib/normalizeEmail.js"}],"modules/tasks-util.js":[function(require,module,exports) {
+},{"./lib/toDate":"../../../node_modules/validator/lib/toDate.js","./lib/toFloat":"../../../node_modules/validator/lib/toFloat.js","./lib/toInt":"../../../node_modules/validator/lib/toInt.js","./lib/toBoolean":"../../../node_modules/validator/lib/toBoolean.js","./lib/equals":"../../../node_modules/validator/lib/equals.js","./lib/contains":"../../../node_modules/validator/lib/contains.js","./lib/matches":"../../../node_modules/validator/lib/matches.js","./lib/isEmail":"../../../node_modules/validator/lib/isEmail.js","./lib/isURL":"../../../node_modules/validator/lib/isURL.js","./lib/isMACAddress":"../../../node_modules/validator/lib/isMACAddress.js","./lib/isIP":"../../../node_modules/validator/lib/isIP.js","./lib/isIPRange":"../../../node_modules/validator/lib/isIPRange.js","./lib/isFQDN":"../../../node_modules/validator/lib/isFQDN.js","./lib/isBoolean":"../../../node_modules/validator/lib/isBoolean.js","./lib/isAlpha":"../../../node_modules/validator/lib/isAlpha.js","./lib/isAlphanumeric":"../../../node_modules/validator/lib/isAlphanumeric.js","./lib/isNumeric":"../../../node_modules/validator/lib/isNumeric.js","./lib/isPort":"../../../node_modules/validator/lib/isPort.js","./lib/isLowercase":"../../../node_modules/validator/lib/isLowercase.js","./lib/isUppercase":"../../../node_modules/validator/lib/isUppercase.js","./lib/isAscii":"../../../node_modules/validator/lib/isAscii.js","./lib/isFullWidth":"../../../node_modules/validator/lib/isFullWidth.js","./lib/isHalfWidth":"../../../node_modules/validator/lib/isHalfWidth.js","./lib/isVariableWidth":"../../../node_modules/validator/lib/isVariableWidth.js","./lib/isMultibyte":"../../../node_modules/validator/lib/isMultibyte.js","./lib/isSurrogatePair":"../../../node_modules/validator/lib/isSurrogatePair.js","./lib/isInt":"../../../node_modules/validator/lib/isInt.js","./lib/isFloat":"../../../node_modules/validator/lib/isFloat.js","./lib/isDecimal":"../../../node_modules/validator/lib/isDecimal.js","./lib/isHexadecimal":"../../../node_modules/validator/lib/isHexadecimal.js","./lib/isDivisibleBy":"../../../node_modules/validator/lib/isDivisibleBy.js","./lib/isHexColor":"../../../node_modules/validator/lib/isHexColor.js","./lib/isISRC":"../../../node_modules/validator/lib/isISRC.js","./lib/isMD5":"../../../node_modules/validator/lib/isMD5.js","./lib/isHash":"../../../node_modules/validator/lib/isHash.js","./lib/isJWT":"../../../node_modules/validator/lib/isJWT.js","./lib/isJSON":"../../../node_modules/validator/lib/isJSON.js","./lib/isEmpty":"../../../node_modules/validator/lib/isEmpty.js","./lib/isLength":"../../../node_modules/validator/lib/isLength.js","./lib/isByteLength":"../../../node_modules/validator/lib/isByteLength.js","./lib/isUUID":"../../../node_modules/validator/lib/isUUID.js","./lib/isMongoId":"../../../node_modules/validator/lib/isMongoId.js","./lib/isAfter":"../../../node_modules/validator/lib/isAfter.js","./lib/isBefore":"../../../node_modules/validator/lib/isBefore.js","./lib/isIn":"../../../node_modules/validator/lib/isIn.js","./lib/isCreditCard":"../../../node_modules/validator/lib/isCreditCard.js","./lib/isIdentityCard":"../../../node_modules/validator/lib/isIdentityCard.js","./lib/isISIN":"../../../node_modules/validator/lib/isISIN.js","./lib/isISBN":"../../../node_modules/validator/lib/isISBN.js","./lib/isISSN":"../../../node_modules/validator/lib/isISSN.js","./lib/isMobilePhone":"../../../node_modules/validator/lib/isMobilePhone.js","./lib/isCurrency":"../../../node_modules/validator/lib/isCurrency.js","./lib/isISO8601":"../../../node_modules/validator/lib/isISO8601.js","./lib/isRFC3339":"../../../node_modules/validator/lib/isRFC3339.js","./lib/isISO31661Alpha2":"../../../node_modules/validator/lib/isISO31661Alpha2.js","./lib/isISO31661Alpha3":"../../../node_modules/validator/lib/isISO31661Alpha3.js","./lib/isBase32":"../../../node_modules/validator/lib/isBase32.js","./lib/isBase64":"../../../node_modules/validator/lib/isBase64.js","./lib/isDataURI":"../../../node_modules/validator/lib/isDataURI.js","./lib/isMagnetURI":"../../../node_modules/validator/lib/isMagnetURI.js","./lib/isMimeType":"../../../node_modules/validator/lib/isMimeType.js","./lib/isLatLong":"../../../node_modules/validator/lib/isLatLong.js","./lib/isPostalCode":"../../../node_modules/validator/lib/isPostalCode.js","./lib/ltrim":"../../../node_modules/validator/lib/ltrim.js","./lib/rtrim":"../../../node_modules/validator/lib/rtrim.js","./lib/trim":"../../../node_modules/validator/lib/trim.js","./lib/escape":"../../../node_modules/validator/lib/escape.js","./lib/unescape":"../../../node_modules/validator/lib/unescape.js","./lib/stripLow":"../../../node_modules/validator/lib/stripLow.js","./lib/whitelist":"../../../node_modules/validator/lib/whitelist.js","./lib/blacklist":"../../../node_modules/validator/lib/blacklist.js","./lib/isWhitelisted":"../../../node_modules/validator/lib/isWhitelisted.js","./lib/normalizeEmail":"../../../node_modules/validator/lib/normalizeEmail.js"}],"modules/login-util.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validatePost = exports.toggleStar = void 0;
+exports.validatePost = exports.extractForm = void 0;
 
 var _validator = _interopRequireDefault(require("validator"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var toggleStar = function toggleStar(star) {
-  if (star.classList.contains('fas')) {
-    star.classList.replace('fas', 'far');
-  } else {
-    star.classList.replace('far', 'fas');
+var extractForm = function extractForm(form) {
+  var formInfo = {};
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = form.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var field = _step.value;
+      formInfo[field[0]] = field[1];
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
   }
+
+  return formInfo;
 };
 
-exports.toggleStar = toggleStar;
+exports.extractForm = extractForm;
 
-var validatePost = function validatePost(description) {
-  description = _validator.default.trim(description);
+var validatePost = function validatePost(form) {
+  var userName = form.get('userName');
+  var password = form.get('password');
+  userName = _validator.default.trim(userName);
 
-  if (_validator.default.isEmpty(description)) {
+  if (_validator.default.isEmpty(userName)) {
     return {
       isValid: false,
-      description: null
+      form: null
     };
   }
 
-  description = _validator.default.escape(description);
+  userName = _validator.default.escape(userName);
+
+  if (_validator.default.isEmpty(password)) {
+    return {
+      isValid: false,
+      form: null
+    };
+  }
+
+  form.set('userName', userName);
   return {
     isValid: true,
-    description: description
+    form: form
   };
 };
 
 exports.validatePost = validatePost;
-},{"validator":"../../../node_modules/validator/index.js"}],"modules/displayTask.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.displayTask = void 0;
-
-var _validator = _interopRequireDefault(require("validator"));
-
-var _ajax = require("./ajax");
-
-var _tasksUtil = require("./tasks-util");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Import local modules
-// Import sound effects
-var completeAudio = new Audio('/audio/complete.wav');
-var deleteAudio = new Audio('/audio/delete.wav');
-var tasksList = document.querySelector('.tasks-list');
-
-var displayTask = function displayTask(task) {
-  // Create HTML elements
-  var itemDiv = document.createElement('div');
-  itemDiv.classList.add('task-item');
-  var completedDiv = document.createElement('div');
-  var descriptionDiv = document.createElement('div');
-  var modifyBtnDiv = document.createElement('div');
-  var starredDiv = document.createElement('div');
-  var modifyDiv = document.createElement('div');
-  var modifyForm = document.createElement('form');
-  completedDiv.classList.add('completed-box');
-  descriptionDiv.classList.add('description-box');
-  modifyBtnDiv.classList.add('modifyBtn-box');
-  starredDiv.classList.add('starred-box');
-  modifyDiv.classList.add('modify-box');
-  modifyForm.classList.add('modify-task-form');
-  modifyForm.setAttribute('action', 'javascript:');
-  modifyForm.setAttribute('autocomplete', 'off');
-  modifyForm.setAttribute('novalidate', '');
-  var checkboxDiv = document.createElement('div');
-  var descriptionPara = document.createElement('p');
-  var modifyIcon = document.createElement('i');
-  var starredIcon = document.createElement('i');
-  var deleteIcon = document.createElement('i');
-  var modifyInput = document.createElement('input');
-  checkboxDiv.classList.add('checkbox');
-  descriptionPara.appendChild(document.createTextNode(_validator.default.unescape(task.description)));
-  modifyIcon.classList.add('far', 'fa-edit');
-
-  if (task.completed === 1) {
-    checkboxDiv.classList.add('checkbox-complete');
-    descriptionPara.classList.add('description-complete');
-    itemDiv.classList.add('task-item-complete');
-  }
-
-  if (task.starred === 1) {
-    starredIcon.classList.add('fas', 'fa-star');
-  } else {
-    starredIcon.classList.add('far', 'fa-star');
-  }
-
-  deleteIcon.classList.add('fas', 'fa-trash-alt');
-  modifyInput.setAttribute('type', 'text');
-  modifyInput.setAttribute('id', 'description-mod');
-  modifyInput.setAttribute('name', 'description');
-  modifyInput.setAttribute('placeholder', 'Modify the task ...');
-  modifyInput.setAttribute('required', ''); // Append HTML elements
-
-  completedDiv.appendChild(checkboxDiv);
-  descriptionDiv.appendChild(descriptionPara);
-  modifyBtnDiv.appendChild(modifyIcon);
-  starredDiv.appendChild(starredIcon);
-  modifyForm.appendChild(modifyInput);
-  modifyDiv.appendChild(modifyForm);
-  modifyDiv.appendChild(deleteIcon);
-  itemDiv.appendChild(completedDiv);
-  itemDiv.appendChild(descriptionDiv);
-  itemDiv.appendChild(modifyBtnDiv);
-  itemDiv.appendChild(starredDiv);
-  itemDiv.appendChild(modifyDiv);
-  tasksList.appendChild(itemDiv); // Event listeners
-
-  checkboxDiv.addEventListener('click', function () {
-    checkboxDiv.classList.toggle('checkbox-complete');
-    descriptionPara.classList.toggle('description-complete');
-    itemDiv.classList.toggle('task-item-complete');
-
-    if (checkboxDiv.classList.contains('checkbox-complete')) {
-      completeAudio.play().catch(function (err) {
-        return console.error(err);
-      });
-    }
-
-    task.completed === 1 ? task.completed = 0 : task.completed = 1;
-    var taskUpdate = {
-      completed: task.completed
-    };
-    (0, _ajax.updateTask)("/tasks/".concat(task.id), JSON.stringify(taskUpdate)).then(function (serverResponse) {
-      if (!serverResponse.success) {
-        console.error(serverResponse);
-      }
-    }).catch(function (err) {
-      return console.error(err);
-    });
-  }, false);
-  modifyIcon.addEventListener('click', function () {
-    modifyDiv.classList.toggle('show-modify-box');
-    modifyIcon.classList.toggle('fa-edit');
-    modifyIcon.classList.toggle('far');
-    modifyIcon.classList.toggle('fa-times');
-    modifyIcon.classList.toggle('fas');
-  }, false);
-  starredIcon.addEventListener('click', function () {
-    (0, _tasksUtil.toggleStar)(starredIcon);
-    task.starred === 1 ? task.starred = 0 : task.starred = 1;
-    var taskUpdate = {
-      starred: task.starred
-    };
-    (0, _ajax.updateTask)("/tasks/".concat(task.id), JSON.stringify(taskUpdate)).then(function (serverResponse) {
-      if (!serverResponse.success) {
-        console.error(serverResponse);
-      }
-    }).catch(function (err) {
-      return console.error(err);
-    });
-  }, false);
-  deleteIcon.addEventListener('click', function () {
-    (0, _ajax.deleteTask)("/tasks/".concat(task.id)).then(function (serverResponse) {
-      if (serverResponse.success) {
-        deleteAudio.play().catch(function (err) {
-          return console.error(err);
-        });
-        itemDiv.remove(); // No IE support
-      } else {
-        console.error(serverResponse);
-      }
-    }).catch(function (err) {
-      return console.error(err);
-    });
-  }, false);
-  modifyForm.addEventListener('submit', function () {
-    var formData = new FormData(modifyForm);
-    var validationResult = (0, _tasksUtil.validatePost)(formData.get('description'));
-    modifyInput.value = '';
-
-    if (validationResult.isValid) {
-      var taskUpdate = {
-        description: validationResult.description
-      };
-      (0, _ajax.updateTask)("/tasks/".concat(task.id), JSON.stringify(taskUpdate)).then(function (serverResponse) {
-        if (serverResponse.success) {
-          descriptionPara.replaceChild(document.createTextNode(_validator.default.unescape(validationResult.description)), descriptionPara.firstChild);
-        } else {
-          console.error(serverResponse);
-        }
-      }).catch(function (err) {
-        return console.error(err);
-      });
-    }
-  }, false);
-};
-
-exports.displayTask = displayTask;
-},{"validator":"../../../node_modules/validator/index.js","./ajax":"modules/ajax.js","./tasks-util":"modules/tasks-util.js"}],"tasks.js":[function(require,module,exports) {
+},{"validator":"../../../node_modules/validator/index.js"}],"login.js":[function(require,module,exports) {
 "use strict";
 
 var _ajax = require("./modules/ajax.js");
 
-var _displayTask = require("./modules/displayTask");
-
-var _tasksUtil = require("./modules/tasks-util");
+var _loginUtil = require("./modules/login-util.js");
 
 // Import local modules
-var postTaskForm = document.querySelector('.post-task-form');
-var formInput = document.querySelector('#description');
-var postStarred = document.querySelector('#post-star');
-var logoutLink = document.querySelector('.logout-link');
-
-var appendTask = function appendTask(taskId) {
-  (0, _ajax.getTasks)("/tasks/".concat(taskId)).then(function (task) {
-    (0, _displayTask.displayTask)(task[0]);
-  }).catch(function (err) {
-    return console.error(err);
-  });
-};
-
-var clearInputs = function clearInputs(option) {
-  if (option === 'post') {
-    formInput.value = '';
-
-    if (postStarred.classList.contains('fas')) {
-      postStarred.classList.replace('fas', 'far');
-    }
-  }
-};
-
-var submitTask = function submitTask() {
-  var formData = new FormData(postTaskForm);
-  var validationResult = (0, _tasksUtil.validatePost)(formData.get('description'));
+var loginForm = document.querySelector('.login-form');
+var errorBox = document.querySelector('.error-box');
+loginForm.addEventListener('submit', function () {
+  var formData = new FormData(loginForm);
+  var validationResult = (0, _loginUtil.validatePost)(formData);
 
   if (validationResult.isValid) {
-    formData.set('description', validationResult.description);
-    formData.set('completed', '0');
-
-    if (postStarred.classList.contains('fas')) {
-      formData.set('starred', '1');
-    } else {
-      formData.set('starred', '0');
-    }
-
-    var formToUrl = new URLSearchParams(formData);
-    (0, _ajax.postTask)('/tasks', formToUrl).then(function (serverResponse) {
+    var loginInfo = new URLSearchParams(validationResult.form);
+    (0, _ajax.postUser)('/login', loginInfo).then(function (serverResponse) {
       if (serverResponse.success) {
-        clearInputs('post');
-        appendTask(serverResponse.taskId);
+        localStorage.setItem('loginStatus', 'true');
+        window.location.href = '/tasks/';
       } else {
-        console.error(serverResponse);
+        errorBox.style.display = 'flex';
       }
     }).catch(function (err) {
       return console.error(err);
     });
-  } else {
-    clearInputs('post');
   }
-}; // Fetch all tasks
-
-
-(0, _ajax.getTasks)('/tasks/all').then(function (tasks) {
-  tasks.forEach(function (task) {
-    (0, _displayTask.displayTask)(task);
-  });
-}).catch(function (err) {
-  return console.error(err);
-}); // Event listeners
-
-logoutLink.addEventListener('click', function () {
-  return localStorage.removeItem('loginStatus');
-}, false); // Change login status
-
-postStarred.addEventListener('click', function () {
-  return (0, _tasksUtil.toggleStar)(postStarred);
 }, false);
-postTaskForm.addEventListener('submit', function () {
-  return submitTask();
-}, false);
-},{"./modules/ajax.js":"modules/ajax.js","./modules/displayTask":"modules/displayTask.js","./modules/tasks-util":"modules/tasks-util.js"}],"../../../../../.nvm/versions/node/v10.16.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/ajax.js":"modules/ajax.js","./modules/login-util.js":"modules/login-util.js"}],"../../../../../.nvm/versions/node/v10.16.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15831,5 +15644,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../.nvm/versions/node/v10.16.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","tasks.js"], null)
-//# sourceMappingURL=/tasks.js.map
+},{}]},{},["../../../../../.nvm/versions/node/v10.16.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","login.js"], null)
+//# sourceMappingURL=/login.js.map

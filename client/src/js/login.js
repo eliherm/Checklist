@@ -1,31 +1,24 @@
+// Import local modules
+import { postUser } from './modules/ajax.js';
+import { validatePost } from './modules/login-util.js';
+
 const loginForm = document.querySelector('.login-form');
 const errorBox = document.querySelector('.error-box');
 
-const postForm = async (url, data) => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: data
-  });
+loginForm.addEventListener('submit', () => {
+  let formData = new FormData(loginForm);
+  let validationResult = validatePost(formData);
 
-  if (response.ok && response.status === 200) {
-    return await response.json();
-  } else {
-    throw new Error(await response.text());
+  if (validationResult.isValid) {
+    let loginInfo = new URLSearchParams(validationResult.form);
+
+    postUser('/login', loginInfo).then((serverResponse) => {
+      if (serverResponse.success) {
+        localStorage.setItem('loginStatus', 'true');
+        window.location.href = '/tasks/';
+      } else {
+        errorBox.style.display = 'flex';
+      }
+    }).catch(err => console.error(err));
   }
-};
-
-// eslint-disable-next-line no-unused-vars
-function submitForm() {
-  let formData = new URLSearchParams(new FormData(loginForm));
-  postForm('/login', formData).then((serverResponse) => {
-    if (serverResponse.success) {
-      localStorage.setItem('loginStatus', 'true');
-      window.location.href = '/tasks/';
-    } else {
-      errorBox.style.display = 'flex';
-    }
-  }).catch(err => console.log(err));
-}
+}, false);

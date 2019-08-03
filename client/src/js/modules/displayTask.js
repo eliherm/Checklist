@@ -133,23 +133,21 @@ export const displayTask = (task) => {
     }).catch(err => console.error(err));
   }, false);
 
-  modifyInput.addEventListener('keydown', event => {
-    if (event.code === 'Enter') {
-      let formData = new FormData(modifyForm);
-      let validationResult = validatePost(formData.get('description'));
+  modifyForm.addEventListener('submit', () => {
+    let formData = new FormData(modifyForm);
+    let validationResult = validatePost(formData.get('description'));
 
-      modifyInput.value = '';
+    modifyInput.value = '';
 
-      if (validationResult.isValid) {
-        let taskUpdate = { description: validationResult.description };
-        updateTask(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then((serverResponse) => {
-          if (serverResponse.success) {
-            descriptionPara.replaceChild(document.createTextNode(validator.unescape(validationResult.description)), descriptionPara.firstChild);
-          } else {
-            console.error(serverResponse);
-          }
-        }).catch(err => console.error(err));
-      }
+    if (validationResult.isValid) {
+      let taskUpdate = { description: validationResult.description };
+      updateTask(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then((serverResponse) => {
+        if (serverResponse.success) {
+          descriptionPara.replaceChild(document.createTextNode(validator.unescape(validationResult.description)), descriptionPara.firstChild);
+        } else {
+          console.error(serverResponse);
+        }
+      }).catch(err => console.error(err));
     }
   }, false);
 };

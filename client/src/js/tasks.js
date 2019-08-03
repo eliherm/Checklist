@@ -1,7 +1,3 @@
-// Enable Babel polyfill
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-
 // Import local modules
 import { getTasks, postTask } from './modules/ajax.js';
 import { displayTask } from './modules/displayTask';
@@ -66,8 +62,4 @@ getTasks('/tasks/all').then(tasks => {
 // Event listeners
 logoutLink.addEventListener('click', () => localStorage.removeItem('loginStatus'), false); // Change login status
 postStarred.addEventListener('click', () => toggleStar(postStarred), false);
-formInput.addEventListener('keydown', event => {
-  if (event.code === 'Enter') {
-    submitTask();
-  }
-}, false);
+postTaskForm.addEventListener('submit', () => submitTask(), false);
