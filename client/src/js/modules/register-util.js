@@ -1,3 +1,5 @@
+import validator from 'validator';
+
 const registerForm = document.querySelector('.register-form');
 const formFields = registerForm.querySelectorAll('input');
 const errorBox = document.querySelector('.error-box');
@@ -46,4 +48,58 @@ export const errHandler = (errors) => {
   } else {
     console.error(errors);
   }
+};
+
+export const validatePost = (form) => {
+  let validationErrors = [];
+
+  let firstName = form.get('firstName');
+  let lastName = form.get('lastName');
+  let userName = form.get('userName');
+  let email = form.get('email');
+  let password = form.get('password');
+  let passwordConfirm = form.get('passwordConfirm');
+
+  firstName = validator.trim(firstName);
+  if (validator.isEmpty(firstName)) {
+    validationErrors.push({ param: 'firstName', msg: 'First name is required' });
+  }
+  firstName = validator.escape(firstName);
+
+  lastName = validator.trim(lastName);
+  lastName = validator.escape(lastName);
+
+  userName = validator.trim(userName);
+  if (validator.isEmpty(userName)) {
+    validationErrors.push({ param: 'userName', msg: 'Username is required' });
+  }
+  userName = validator.escape(userName);
+
+  if (validator.isEmpty(email)) {
+    validationErrors.push({ param: 'email', msg: 'Email is required' });
+  }
+  if (!(validator.isEmail(email))) {
+    validationErrors.push({ param: 'email', msg: 'Invalid email format' });
+  }
+  email = validator.normalizeEmail(email);
+
+  if (!(validator.isLength(password, { min: 6 }))) {
+    validationErrors.push({ param: 'password', msg: 'The password must be at least 6 characters' });
+  }
+
+  if (passwordConfirm !== password) {
+    validationErrors.push({ param: 'passwordConfirm', msg: 'Confirmation password does not match password' });
+  }
+
+  if (validationErrors.length > 0) {
+    return { isValid: false, validationErrors: validationErrors, form: null };
+  }
+
+  form.set('firstName', firstName);
+  form.set('lastName', lastName);
+  form.set('userName', userName);
+  form.set('email', email);
+  form.set('password', password);
+  form.set('passwordConfirm', passwordConfirm);
+  return { isValid: true, form: form };
 };
