@@ -1,7 +1,7 @@
 import validator from 'validator';
 
 // Import local modules
-import { deleteTask, updateTask } from './ajax';
+import { deleteMethod, updateMethod } from './ajax';
 import { toggleStar, validatePost } from './tasks-util';
 
 // Import sound effects
@@ -94,7 +94,7 @@ export const displayTask = (task) => {
     task.completed === 1 ? task.completed = 0 : task.completed = 1;
     let taskUpdate = { completed: task.completed };
 
-    updateTask(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then( serverResponse => {
+    updateMethod(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then( serverResponse => {
       if (!serverResponse.success) {
         console.error(serverResponse);
       }
@@ -115,7 +115,7 @@ export const displayTask = (task) => {
     task.starred === 1 ? task.starred = 0 : task.starred = 1;
     let taskUpdate = { starred: task.starred };
 
-    updateTask(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then( serverResponse => {
+    updateMethod(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then( serverResponse => {
       if (!serverResponse.success) {
         console.error(serverResponse);
       }
@@ -123,7 +123,7 @@ export const displayTask = (task) => {
   }, false);
 
   deleteIcon.addEventListener('click', () => {
-    deleteTask(`/tasks/${task.id}`).then( serverResponse => {
+    deleteMethod(`/tasks/${task.id}`).then( serverResponse => {
       if (serverResponse.success) {
         deleteAudio.play().catch(err => console.error(err));
         itemDiv.remove(); // No IE support
@@ -141,7 +141,7 @@ export const displayTask = (task) => {
 
     if (validationResult.isValid) {
       let taskUpdate = { description: validationResult.description };
-      updateTask(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then((serverResponse) => {
+      updateMethod(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then((serverResponse) => {
         if (serverResponse.success) {
           descriptionPara.replaceChild(document.createTextNode(validator.unescape(validationResult.description)), descriptionPara.firstChild);
         } else {

@@ -1,5 +1,5 @@
 // Import local modules
-import { getTasks, postTask } from './modules/ajax.js';
+import { getMethod, postMethod } from './modules/ajax.js';
 import { displayTask } from './modules/displayTask';
 import { toggleStar, validatePost  } from './modules/tasks-util';
 
@@ -9,7 +9,7 @@ const postStarred = document.querySelector('#post-star');
 const logoutLink = document.querySelector('.logout-link');
 
 const appendTask = (taskId) => {
-  getTasks(`/tasks/${taskId}`).then(task => {
+  getMethod(`/tasks/${taskId}`).then(task => {
     displayTask(task[0]);
   }).catch(err => console.error(err));
 };
@@ -39,7 +39,7 @@ const submitTask = () => {
 
     let formToUrl = new URLSearchParams(formData);
 
-    postTask('/tasks', formToUrl).then((serverResponse) => {
+    postMethod('/tasks', formToUrl).then((serverResponse) => {
       if (serverResponse.success) {
         clearInputs('post');
         appendTask(serverResponse.taskId);
@@ -53,7 +53,7 @@ const submitTask = () => {
 };
 
 // Fetch all tasks
-getTasks('/tasks/all').then(tasks => {
+getMethod('/tasks/all').then(tasks => {
   tasks.forEach(task => {
     displayTask(task);
   });

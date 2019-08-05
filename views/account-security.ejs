@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <link href="/src/css/layout.css" rel="stylesheet">
+    <link href="/src/css/account.css" rel="stylesheet">
+    <script src="/src/js/dist/account.js" defer></script>
+</head>
+
+<body>
+<% let links = [{ name: 'Tasks', href: '/tasks', class: '' }, { name: 'Account', href: '/account', class: 'active-nav-link' }, { name: 'Logout', href: '/logout', class: 'logout-link' }] %>
+<%- include('partials/navigation', {links: links}) %>
+
+<main role="main">
+    <section class="account-container">
+        <div class="sidebar-top"></div>
+        <div class="sidebar">
+            <img src="/images/profile.png" alt="Profile picture">
+
+            <div class="links-box">
+                <a href="/account" class="account-link">Profile</a>
+                <a href="/account/security" class="account-linkgit ">Security</a>
+            </div>
+        </div>
+
+        <div class="section-title-bg"></div>
+        <div class="section-title">
+            <h2>Change Password</h2>
+        </div>
+
+        <div class="form-bg"></div>
+        <form class="account-security-form" action="javascript:" novalidate autocomplete="off">
+            <div id="oldPassword-box" class="input-box">
+                <label for="oldPassword"></label>
+                <input type="text" id="oldPassword" name="oldPassword" placeholder="Old Password" required>
+            </div>
+
+            <div id="newPassword-box" class="input-box">
+                <label for="newPassword"></label>
+                <input type="text" id="newPassword" name="newPassword" placeholder="New Password">
+            </div>
+
+            <div id="passwordConfirm-box" class="input-box">
+                <label for="passwordConfirm"></label>
+                <input type="text" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" id="submit-btn">Update Password</button>
+        </form>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
+</body>
+</html>

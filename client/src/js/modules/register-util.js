@@ -4,14 +4,6 @@ const registerForm = document.querySelector('.register-form');
 const formFields = registerForm.querySelectorAll('input');
 const errorBox = document.querySelector('.error-box');
 
-export const extractForm = (form) => {
-  let formInfo = {};
-  for (let field of form.entries()) {
-    formInfo[field[0]] = field[1];
-  }
-  return formInfo;
-};
-
 export const resetErrors = () => {
   // Reset any errors
   if (errorBox.style.display === 'flex') {

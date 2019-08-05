@@ -1,4 +1,3 @@
-const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -20,12 +19,6 @@ class usersController {
   // Retrieve a single user
   static async getUser(req, res, next) {
     try{
-      // Check for validation errors
-      const validationErrors = validationResult(req);
-      if (!validationErrors.isEmpty()) {
-        return res.status(400).json({ error: 'The requested id is invalid' });
-      }
-
       let requestId = req.params.userId;
       let user = await users.getUser(requestId);
 
@@ -33,7 +26,8 @@ class usersController {
         return res.status(404).json({ error: `User with id = ${requestId} was not found` });
       }
 
-      res.json(user);
+      [ user ] = user; // Destructure user from array
+      res.json({ success: true, user: user });
     } catch (err) {
       err.resStatus = 500;
       err.clientMessage = { error: 'The user could not be retrieved' };
@@ -44,12 +38,6 @@ class usersController {
   // Add a user
   static async postUser(req, res, next) {
     try {
-      // Check for validation errors
-      const validationErrors = validationResult(req);
-      if (!validationErrors.isEmpty()) {
-        return res.status(422).json({ validationErrors: validationErrors.array() });
-      }
-
       let userInfo = req.body;
       delete userInfo.passwordConfirm;
 
@@ -76,12 +64,6 @@ class usersController {
   // Update specified fields of a user
   static async updateUser(req, res, next) {
     try {
-      // Check for validation errors
-      const validationErrors = validationResult(req);
-      if (!validationErrors.isEmpty()) {
-        return res.status(422).json({ validationErrors: validationErrors.array() });
-      }
-
       let requestId = req.params.userId;
       let updateInfo = req.body;
 
@@ -90,13 +72,22 @@ class usersController {
         return res.status(400).json({ error: 'No fields provided' });
       }
 
+      // Check if the user name exists
+      if (updateInfo.userName !== req.user.userName) {
+        let userNameMatch = await users.findUserName(updateInfo.userName);
+        if (userNameMatch.length !== 0) {
+          let validationErrors = [{ param: 'userName', msg: 'The username is taken' }];
+          return res.status(422).json({ validationErrors: validationErrors });
+        }
+      }
+
       let DBResponse = await users.updateUser(requestId, updateInfo);
 
       if (DBResponse === 0) {
         return res.status(404).json({ error: `User with id = ${requestId} was not found` });
       }
 
-      res.json({ message: `User with id = ${requestId} was updated` });
+      res.json({ success: true, message: `User with id = ${requestId} was updated` });
     } catch (err) {
       err.resStatus = 500;
       err.clientMessage = {error: 'The user could not be updated'};
@@ -107,12 +98,6 @@ class usersController {
   // Delete a user
   static async deleteUser(req, res, next) {
     try {
-      // Check for validation errors
-      const validationErrors = validationResult(req);
-      if (!validationErrors.isEmpty()) {
-        return res.status(400).json({error: 'The requested id is invalid'});
-      }
-
       let requestId = req.params.userId;
       let DBResponse = await users.removeUser(requestId);
 

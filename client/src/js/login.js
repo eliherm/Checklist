@@ -1,5 +1,5 @@
 // Import local modules
-import { postUser } from './modules/ajax.js';
+import { postMethod } from './modules/ajax.js';
 import { validatePost } from './modules/login-util.js';
 
 const loginForm = document.querySelector('.login-form');
@@ -12,7 +12,7 @@ loginForm.addEventListener('submit', () => {
   if (validationResult.isValid) {
     let loginInfo = new URLSearchParams(validationResult.form);
 
-    postUser('/login', loginInfo).then((serverResponse) => {
+    postMethod('/login', loginInfo).then((serverResponse) => {
       if (serverResponse.success) {
         localStorage.setItem('loginStatus', 'true');
         window.location.href = '/tasks/';
