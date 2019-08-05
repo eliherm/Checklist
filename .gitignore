@@ -4,4 +4,5 @@ api/db/er-diagrams
 client/audio
 client/images
 client/src/js/cache
+client/src/js/dist
 .idea/
