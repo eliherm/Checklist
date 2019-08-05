@@ -3,6 +3,8 @@ import { populateFields, validateUpdate, extractForm, errHandler, resetErrors } 
 
 const profileForm = document.querySelector('.account-profile-form');
 // const securityForm = document.querySelector('.account-security-form');
+const successBanner = document.querySelector('.success-banner');
+const logoutLink = document.querySelector('.logout-link');
 
 if (profileForm) {
   const profileFields = profileForm.querySelectorAll('input');
@@ -11,6 +13,7 @@ if (profileForm) {
   profileForm.addEventListener('submit', () => {
     let formData = new FormData(profileForm);
     let validationResult = validateUpdate(formData);
+    successBanner.style.display = 'none';
     resetErrors(profileFields);
 
     if (validationResult.isValid) {
@@ -18,6 +21,7 @@ if (profileForm) {
 
       updateMethod('/account/profile/edit', JSON.stringify(updateInfo)).then(serverResponse => {
         if (serverResponse.success) {
+          successBanner.style.display = 'block';
           populateFields(profileFields);
         }
       }).catch(err => errHandler(err, profileForm, profileFields));
@@ -26,3 +30,6 @@ if (profileForm) {
     }
   }, false);
 }
+
+// Event listeners
+logoutLink.addEventListener('click', () => localStorage.removeItem('loginStatus'), false); // Change login status

@@ -42,6 +42,7 @@ form {
     /*display: flex;*/
     /*flex-direction: column;*/
     width: calc(100% - 40px);
+    padding-bottom: 20px;
     margin: 0 20px 0;
 }
 .input-box {
@@ -70,6 +71,7 @@ input::placeholder {
 }
 #submit-btn {
     width: 30%;
+    /*margin-bottom: 20px;*/
     padding: 8px;
     border: none;
     border-radius: 3px;
@@ -101,6 +103,7 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding-bottom: 36px;
     border-bottom-left-radius: 3px;
     background: #3E3E3E;
 }
@@ -134,9 +137,6 @@ input::placeholder {
 .links-box > a:active {
     background: #9F3232;
 }
-.sidebar > div > a:nth-child(2) {
-    margin-bottom: 20px;
-}
 .tooltip {
     visibility: hidden;
     width: 200px;
@@ -167,4 +167,18 @@ input::placeholder {
 }
 .show-tooltip {
     visibility: visible;
+}
+.success-banner {
+    display: none;
+    width: calc(100% - 16px);
+    height: 20px;
+    margin-bottom: 20px;
+    padding: 8px;
+    border-radius: 3px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #f7f7f7;
+    background: #3E3E3E;
 }
