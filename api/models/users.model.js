@@ -9,6 +9,10 @@ class usersModel {
     return connection('users').select('id', 'firstName', 'lastName', 'userName', 'email').where('id', id);
   }
 
+  static getPassword(id) {
+    return connection('users').select('password').where('id', id);
+  }
+
   static findUserName(userName) {
     return connection('users').select('id').where('userName', userName);
   }

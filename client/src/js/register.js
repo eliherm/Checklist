@@ -1,5 +1,3 @@
-//TODO: Add Hover for client side validation errors
-
 // Import local modules
 import { postMethod } from './modules/ajax.js';
 import { errHandler, resetErrors, validatePost } from './modules/register-util';

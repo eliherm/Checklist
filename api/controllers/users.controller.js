@@ -65,6 +65,10 @@ class usersController {
   static async updateUser(req, res, next) {
     try {
       let requestId = req.params.userId;
+      if (requestId !== req.user.id) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
       let updateInfo = req.body;
 
       // Check for empty req body
@@ -95,10 +99,58 @@ class usersController {
     }
   }
 
+  // Update a user's password
+  static async updatePassword(req, res, next) {
+    try {
+      let requestId = req.params.userId;
+      if (requestId !== req.user.id) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
+      let updateInfo = req.body;
+      let passwordUpdate = {};
+
+      let oldPassword = await users.getPassword(requestId);
+      if (oldPassword.length === 0) {
+        return res.status(400).json({ error: 'Invalid user id' });
+      }
+
+      [ oldPassword ] = oldPassword; // Destructure old password from array
+      oldPassword = oldPassword.password.toString();
+
+      let passwordMatch = await bcrypt.compare(updateInfo.oldPassword, oldPassword);
+
+      if (!passwordMatch) {
+        let validationErrors = [{ param: 'oldPassword', msg: 'Invalid Password' }];
+        return res.status(422).json({ validationErrors: validationErrors });
+      }
+
+      passwordUpdate.password = await bcrypt.hash(updateInfo.newPassword, saltRounds); // Hash the password
+      let DBResponse = await users.updateUser(requestId, passwordUpdate);
+
+      if (DBResponse === 0) {
+        return res.status(404).json({ error: `User with id = ${requestId} was not found` });
+      }
+
+      passwordUpdate = null;
+      oldPassword = null;
+      updateInfo = null;
+      res.json({ success: true, message: `The password for user with id = ${requestId} was updated` });
+    } catch (err) {
+      err.resStatus = 500;
+      err.clientMessage = {error: 'The password could not be updated'};
+      next(err);
+    }
+  }
+
   // Delete a user
   static async deleteUser(req, res, next) {
     try {
       let requestId = req.params.userId;
+      if (requestId !== req.user.id) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
       let DBResponse = await users.removeUser(requestId);
 
       if (DBResponse === 0) {

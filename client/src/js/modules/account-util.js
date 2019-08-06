@@ -35,6 +35,13 @@ export const resetErrors = (formFields) => {
   });
 };
 
+export const resetFields = (formFields) => {
+  // Reset all fields
+  formFields.forEach(field => {
+    field.value = '';
+  });
+};
+
 export const errHandler = (errors, form, formFields) => {
   if (errors.validationErrors) {
     errors.validationErrors.forEach((error) => {
@@ -51,7 +58,7 @@ export const errHandler = (errors, form, formFields) => {
           let fieldBox = form.querySelector(`#${field.name}-box`);
           fieldBox.appendChild(tooltip);
 
-          // Event Listeners
+          // Add Event Listeners
           field.addEventListener('keypress', () => {
             cancelFlag = true;
             field.style.border = '1px solid #D8D8D8'; // reset error
@@ -124,5 +131,34 @@ export const validateUpdate = (form) => {
   form.set('lastName', lastName);
   form.set('userName', userName);
   form.set('email', email);
+  return { isValid: true, form: form };
+};
+
+export const validatePasswords = (form) => {
+  let validationErrors = [];
+
+  let oldPassword = form.get('oldPassword');
+  let newPassword = form.get('newPassword');
+  let passwordConfirm = form.get('passwordConfirm');
+
+  if (!(validator.isLength(oldPassword, { min: 6 }))) {
+    validationErrors.push({ param: 'oldPassword', msg: 'Invalid password' });
+  }
+
+  if (!(validator.isLength(newPassword, { min: 6 }))) {
+    validationErrors.push({ param: 'newPassword', msg: 'The password must be at least 6 characters' });
+  }
+  if (newPassword === oldPassword) {
+    validationErrors.push({ param: 'newPassword', msg: 'The new password is identical to the old password' });
+  }
+
+  if (passwordConfirm !== newPassword) {
+    validationErrors.push({ param: 'passwordConfirm', msg: 'Confirmation password does not match new password' });
+  }
+
+  if (validationErrors.length > 0) {
+    return { isValid: false, validationErrors: validationErrors, form: null };
+  }
+
   return { isValid: true, form: form };
 };
