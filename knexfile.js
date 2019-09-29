@@ -1,12 +1,14 @@
+const config = require('./api/config')[process.env.NODE_ENV || 'development'];
+
 module.exports = {
   development: {
     client: 'mysql2',
     version: '8.0.16',
     connection: {
-      host: process.env.DB_HOST || '127.0.0.1',
-      user: process.env.DB_USER || 'root',
-      password: process.env.DB_PASSWORD || '123',
-      database: process.env.DB_NAME || 'checklist'
+      host: config.db.host,
+      user: config.db.user,
+      password: config.db.password,
+      database: config.db.database
     },
     migrations: {
       directory: './api/db/migrations',

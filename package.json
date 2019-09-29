@@ -4,10 +4,10 @@
   "description": "A simple checklist application",
   "main": "index.js",
   "scripts": {
-    "prestart": "clear && NODE_ENV=development parcel build ./client/src/js/*.js --no-minify --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
+    "prestart": "NODE_ENV=development parcel build ./client/src/js/*.js --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
     "start": "node index.js",
-    "build-watch": "clear && parcel watch ./client/src/js/*.js --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
-    "dev:start": "clear && nodemon index.js --ignore ./client/src/js",
+    "build-watch": "parcel watch ./client/src/js/*.js --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
+    "dev:start": "nodemon index.js --ignore ./client/src/js",
     "lint": "eslint ."
   },
   "keywords": [
@@ -15,10 +15,11 @@
     "to-do"
   ],
   "author": "Elikem Hermon",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^3.0.6",
     "chalk": "^2.4.2",
+    "compression": "^1.7.4",
     "connect-redis": "^3.4.2",
     "core-js": "^3.1.4",
     "dotenv": "^8.0.0",
@@ -26,7 +27,7 @@
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "express-validator": "^6.1.1",
-    "helmet": "^3.18.0",
+    "helmet": "^3.21.1",
     "knex": "^0.18.3",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",

@@ -1,22 +1,23 @@
 const express = require('express');
 const helmet = require('helmet');
+const compression = require('compression');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-const redisConfig = require('./redis-config');
+const redisConfig = require('./config')[process.env.NODE_ENV || 'development'].redis;
 const passport = require('./passport-config');
 const uuid = require('uuid/v4');
 const path = require('path');
-require('dotenv').config(); // Sets up environment variables
 
 const router = require('./routes/index.routes');
 
 const app = express();
 app.use(helmet()); // Provides security features for express
+app.use(compression());
 
 // Configure session
 app.use(session({
   name: 'checklist.sid',
-  secret: 'secret',
+  secret: process.env.SESSION_SECRET,
   genid: () => {
     return uuid();
   },
@@ -40,16 +41,17 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// Initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Enable ejs templating
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
+// Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Serve static files to client
 app.use(express.static(path.join(__dirname, '..', 'client')));
+app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
 // Implement routes
 app.use(router);

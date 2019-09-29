@@ -3,12 +3,13 @@ const loginRouter = express.Router();
 const { checkSchema } = require('express-validator');
 
 const loginCtrl = require('../../controllers/login.controller');
-const validatePostSchema = require('../../helpers/validation/login-post-valSchema'); // Import validation schema
-const checkValidationErr = require('../../helpers/validation/checkValidationErr');
+const checkValidationErr = require('../../lib/validation/checkErrors');
 const authUser = require('./authUser');
+
+const postSchema = require('../../lib/validation/login-post-schema'); // Import validation schema
 
 loginRouter
   .get('/', (req, res) => res.render('login'))
-  .post('/', checkSchema(validatePostSchema), checkValidationErr, authUser, loginCtrl.notifyClient);
+  .post('/', checkSchema(postSchema), checkValidationErr, authUser, loginCtrl.notifyClient);
 
 module.exports = loginRouter;

@@ -4,19 +4,19 @@ const { checkSchema } = require('express-validator');
 
 const tasksCtrl = require('../controllers/tasks.controller');
 const isAuthorized = require('./auth/isAuthorized');
-const checkValidationErr = require('../helpers/validation/checkValidationErr');
+const checkValidationErr = require('../lib/validation/checkErrors');
 
 // Import validation schemas
-const validatePostSchema = require('../helpers/validation/tasks-post-valSchema');
-const validateIdSchema = require('../helpers/validation/tasks-id-valSchema');
-const validateUpdateSchema = require('../helpers/validation/tasks-update-valSchema');
+const idSchema = require('../lib/validation/tasks-id-schema');
+const postSchema = require('../lib/validation/tasks-post-schema');
+const updateSchema = require('../lib/validation/tasks-update-schema');
 
 tasksRouter
   .get('/', isAuthorized, (req, res) => res.render('tasks'))
   .get('/all', isAuthorized, tasksCtrl.getTasks)
-  .get('/:taskId', isAuthorized,checkSchema(validateIdSchema), checkValidationErr, tasksCtrl.getTask)
-  .post('/', isAuthorized, checkSchema(validatePostSchema), checkValidationErr, tasksCtrl.postTask)
-  .put('/:taskId', isAuthorized, checkSchema(validateUpdateSchema), checkValidationErr, tasksCtrl.updateTask)
-  .delete('/:taskId', isAuthorized, checkSchema(validateIdSchema), checkValidationErr,  tasksCtrl.deleteTask);
+  .get('/:taskId', isAuthorized,checkSchema(idSchema), checkValidationErr, tasksCtrl.getTask)
+  .post('/', isAuthorized, checkSchema(postSchema), checkValidationErr, tasksCtrl.postTask)
+  .put('/:taskId', isAuthorized, checkSchema(updateSchema), checkValidationErr, tasksCtrl.updateTask)
+  .delete('/:taskId', isAuthorized, checkSchema(idSchema), checkValidationErr,  tasksCtrl.deleteTask);
 
 module.exports = tasksRouter;
