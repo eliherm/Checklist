@@ -3,23 +3,29 @@ services:
   server:
     build: .
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:${PORT:-3000}"
     volumes:
       - /app/node_modules
       - .:/app
     env_file: .env
+    environment:
+      REDIS_HOST: redis
+      DB_HOST: db
     depends_on:
+      - db
       - redis
-    networks:
-      - frontend
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME:-checklist}"
 
   redis:
     image: redis:alpine
-    restart: always
-    ports:
-      - "6379:6379"
-    networks:
-      - frontend
-
-networks:
-  frontend:
+    expose:
+      - "${REDIS_PORT:-6379}"

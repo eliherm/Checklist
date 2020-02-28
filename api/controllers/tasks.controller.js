@@ -7,8 +7,9 @@ class tasksController {
       const tasks = await userTasks.getTasks(req.user.id);
       res.json(tasks);
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: `The tasks list for ${req.user.id} could not be retrieved` };
+      err.status = 500;
+      err.clientMessage = `The tasks list for ${req.user.id} could not be retrieved`;
+      err.showMsg = true;
       next(err);
     }
   }
@@ -25,8 +26,9 @@ class tasksController {
 
       return res.json(task);
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The task could not be retrieved' };
+      err.status = 500;
+      err.clientMessage = 'The task could not be retrieved';
+      err.showMsg = true;
       return next(err);
     }
   }
@@ -42,8 +44,9 @@ class tasksController {
 
       res.json({ success: true, message: 'A new task was added', taskId });
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The task could not be added' };
+      err.status = 500;
+      err.clientMessage = 'The task could not be added';
+      err.showMsg = true;
       next(err);
     }
   }
@@ -67,8 +70,9 @@ class tasksController {
 
       return res.json({ success: true, message: `Task with id = ${requestId} was updated` });
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The task could not be updated' };
+      err.status = 500;
+      err.clientMessage = 'The task could not be updated';
+      err.showMsg = true;
       return next(err);
     }
   }
@@ -85,8 +89,9 @@ class tasksController {
 
       return res.json({ success: true, message: `Task with id = ${requestId} was deleted` });
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The task could not be deleted' };
+      err.status = 500;
+      err.clientMessage = 'The task could not be deleted';
+      err.showMsg = true;
       return next(err);
     }
   }

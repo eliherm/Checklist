@@ -57,8 +57,7 @@ if (cluster.isMaster) {
     const bind = typeof addr === 'string'
       ? `pipe ${addr}`
       : `port ${addr.port}`;
-    // console.log(chalk.green(`Listening on ${bind}`));
-    console.log(chalk.green(`Server running at http://${process.env.HOST}:${bind}`));
+    console.log(chalk.green(`Listening on ${bind}`));
   });
 }
 

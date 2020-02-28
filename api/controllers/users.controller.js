@@ -10,8 +10,9 @@ class usersController {
       const userList = await users.getUsers();
       res.json(userList);
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The users list could not be retrieved' };
+      err.status = 500;
+      err.clientMessage = 'The users list could not be retrieved';
+      err.showMsg = true;
       next(err);
     }
   }
@@ -29,8 +30,9 @@ class usersController {
       [user] = user; // Destructure user from array
       return res.json({ success: true, user });
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The user could not be retrieved' };
+      err.status = 500;
+      err.clientMessage = 'The user could not be retrieved';
+      err.showMsg = true;
       return next(err);
     }
   }
@@ -55,8 +57,9 @@ class usersController {
 
       return res.json({ success: true, message: 'A new user was added' });
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The user could not be added' };
+      err.status = 500;
+      err.clientMessage = 'The user could not be added';
+      err.showMsg = true;
       return next(err);
     }
   }
@@ -93,8 +96,9 @@ class usersController {
 
       return res.json({ success: true, message: `User with id = ${requestId} was updated` });
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The user could not be updated' };
+      err.status = 500;
+      err.clientMessage = 'The user could not be updated';
+      err.showMsg = true;
       return next(err);
     }
   }
@@ -138,8 +142,9 @@ class usersController {
       updateInfo = null;
       return res.json({ success: true, message: `The password for user with id = ${requestId} was updated` });
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The password could not be updated' };
+      err.status = 500;
+      err.clientMessage = 'The password could not be updated';
+      err.showMsg = true;
       return next(err);
     }
   }
@@ -160,8 +165,9 @@ class usersController {
 
       return res.json({ message: `User with id = ${requestId} was deleted` });
     } catch (err) {
-      err.resStatus = 500;
-      err.clientMessage = { error: 'The user could not be deleted' };
+      err.status = 500;
+      err.clientMessage = 'The user could not be deleted';
+      err.showMsg = true;
       return next(err);
     }
   }

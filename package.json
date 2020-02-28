@@ -6,7 +6,7 @@
     "prestart": "npx parcel build ./client/js/*.js ./client/css/*.css ./client/images/*.png ./client/audio/*.wav --out-dir ./client/dist/ --cache-dir ./client/cache/",
     "start": "node bin/www",
     "build-watch": "npx parcel watch ./client/js/*.js ./client/css/*.css ./client/images/*.png ./client/audio/*.wav --out-dir ./client/dist/ --cache-dir ./client/cache/",
-    "dev:start": "nodemon index.js --ignore ./client/js",
+    "dev:start": "nodemon bin/www --ignore ./client/js",
     "lint": "eslint ."
   },
   "keywords": [
@@ -31,6 +31,7 @@
     "mysql2": "^1.7.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "redis": "^3.0.2",
     "regenerator-runtime": "^0.13.3",
     "uuid": "^3.3.3",
     "validator": "^11.1.0"
