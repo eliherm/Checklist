@@ -1,8 +1,9 @@
 import validator from 'validator';
 
+// eslint-disable-next-line import/prefer-default-export
 export const validatePost = (form) => {
   let userName = form.get('userName');
-  let password = form.get('password');
+  const password = form.get('password');
 
   userName = validator.trim(userName);
   if (validator.isEmpty(userName)) {
@@ -15,5 +16,5 @@ export const validatePost = (form) => {
   }
 
   form.set('userName', userName);
-  return { isValid: true, form: form };
+  return { isValid: true, form };
 };

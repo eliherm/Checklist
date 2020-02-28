@@ -1,5 +1,5 @@
-const server = require('./api/server');
 const chalk = require('chalk'); // Colors terminal text
+const server = require('./api/server');
 
 const port = process.env.PORT;
 

@@ -1,10 +1,13 @@
 import validator from 'validator';
 
-import { getMethod } from './ajax.js';
+import { getMethod } from './ajax';
 
 export const extractForm = (form) => {
-  let formInfo = {};
-  for (let field of form.entries()) {
+  const formInfo = {};
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const field of form.entries()) {
+    // eslint-disable-next-line prefer-destructuring
     formInfo[field[0]] = field[1];
   }
   return formInfo;
@@ -13,10 +16,10 @@ export const extractForm = (form) => {
 export const populateFields = (fields) => {
   getMethod('/account/profile').then((serverResponse) => {
     if (serverResponse.success) {
-      let user = serverResponse.user;
+      const { user } = serverResponse;
 
-      fields.forEach(field => {
-        Object.keys(user).forEach(key => {
+      fields.forEach((field) => {
+        Object.keys(user).forEach((key) => {
           if (key === field.name) {
             field.value = user[key];
           }
@@ -25,19 +28,19 @@ export const populateFields = (fields) => {
     } else {
       console.error(serverResponse);
     }
-  }).catch(err => console.error(err));
+  }).catch((err) => console.error(err));
 };
 
 export const resetErrors = (formFields) => {
   // Reset any errors
-  formFields.forEach(field => {
+  formFields.forEach((field) => {
     field.style.border = '1px solid #D8D8D8';
   });
 };
 
 export const resetFields = (formFields) => {
   // Reset all fields
-  formFields.forEach(field => {
+  formFields.forEach((field) => {
     field.value = '';
   });
 };
@@ -45,17 +48,17 @@ export const resetFields = (formFields) => {
 export const errHandler = (errors, form, formFields) => {
   if (errors.validationErrors) {
     errors.validationErrors.forEach((error) => {
-      let msg = error.msg;
+      const { msg } = error;
 
-      let tooltip = document.createElement('div');
+      const tooltip = document.createElement('div');
       tooltip.classList.add('tooltip');
       tooltip.appendChild(document.createTextNode(msg));
 
-      formFields.forEach(field => {
+      formFields.forEach((field) => {
         if (field.name === error.param) {
           let cancelFlag = false;
           field.style.border = '1px solid #C11C1C';
-          let fieldBox = form.querySelector(`#${field.name}-box`);
+          const fieldBox = form.querySelector(`#${field.name}-box`);
           fieldBox.appendChild(tooltip);
 
           // Add Event Listeners
@@ -93,7 +96,7 @@ export const errHandler = (errors, form, formFields) => {
 };
 
 export const validateUpdate = (form) => {
-  let validationErrors = [];
+  const validationErrors = [];
 
   let firstName = form.get('firstName');
   let lastName = form.get('lastName');
@@ -124,22 +127,22 @@ export const validateUpdate = (form) => {
   email = validator.normalizeEmail(email);
 
   if (validationErrors.length > 0) {
-    return { isValid: false, validationErrors: validationErrors, form: null };
+    return { isValid: false, validationErrors, form: null };
   }
 
   form.set('firstName', firstName);
   form.set('lastName', lastName);
   form.set('userName', userName);
   form.set('email', email);
-  return { isValid: true, form: form };
+  return { isValid: true, form };
 };
 
 export const validatePasswords = (form) => {
-  let validationErrors = [];
+  const validationErrors = [];
 
-  let oldPassword = form.get('oldPassword');
-  let newPassword = form.get('newPassword');
-  let passwordConfirm = form.get('passwordConfirm');
+  const oldPassword = form.get('oldPassword');
+  const newPassword = form.get('newPassword');
+  const passwordConfirm = form.get('passwordConfirm');
 
   if (!(validator.isLength(oldPassword, { min: 6 }))) {
     validationErrors.push({ param: 'oldPassword', msg: 'Invalid password' });
@@ -157,8 +160,8 @@ export const validatePasswords = (form) => {
   }
 
   if (validationErrors.length > 0) {
-    return { isValid: false, validationErrors: validationErrors, form: null };
+    return { isValid: false, validationErrors, form: null };
   }
 
-  return { isValid: true, form: form };
+  return { isValid: true, form };
 };

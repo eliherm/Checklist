@@ -1,7 +1,6 @@
-
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema
-    .createTable('tasks', table => {
+    .createTable('tasks', (table) => {
       table.increments('id');
       table.string('description').notNullable();
       table.boolean('completed').notNullable().defaultTo(false);
@@ -13,6 +12,6 @@ exports.up = function(knex) {
     });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTable('tasks');
 };

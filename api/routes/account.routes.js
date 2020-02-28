@@ -1,6 +1,6 @@
 const express = require('express');
-const accountRouter = express.Router();
 
+const accountRouter = express.Router();
 const isAuthorized = require('./auth/isAuthorized');
 
 accountRouter

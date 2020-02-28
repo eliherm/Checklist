@@ -3,10 +3,10 @@ const helmet = require('helmet');
 const compression = require('compression');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-const redisConfig = require('./config')[process.env.NODE_ENV || 'development'].redis;
-const passport = require('./passport-config');
 const uuid = require('uuid/v4');
 const path = require('path');
+const passport = require('./passport-config');
+// const redisConfig = require('./config')[process.env.NODE_ENV || 'development'].redis;
 
 const router = require('./routes/index.routes');
 
@@ -18,10 +18,8 @@ app.use(compression());
 app.use(session({
   name: 'checklist.sid',
   secret: process.env.SESSION_SECRET,
-  genid: () => {
-    return uuid();
-  },
-  store: new RedisStore(redisConfig),
+  genid: () => uuid(),
+  store: new RedisStore(),
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -34,12 +32,12 @@ app.use((req, res, next) => {
   if (!req.session) {
     return next({ resStatus: 500, clientMessage: 'Internal server error' });
   }
-  next();
+  return next();
 });
 
 // Enable support for parsing request payloads
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // Enable ejs templating
 app.set('views', './views');

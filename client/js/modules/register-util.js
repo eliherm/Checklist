@@ -7,7 +7,7 @@ const errorBox = document.querySelector('.error-box');
 export const resetErrors = () => {
   // Reset any errors
   if (errorBox.style.display === 'flex') {
-    formFields.forEach(field => {
+    formFields.forEach((field) => {
       field.style.border = '1px solid #D8D8D8';
     });
 
@@ -19,9 +19,9 @@ export const resetErrors = () => {
 export const errHandler = (errors) => {
   if (errors.validationErrors) {
     errors.validationErrors.forEach((error, index, Array) => {
-      let msg = error.msg;
+      const { msg } = error;
 
-      let paragragh = document.createElement('p');
+      const paragragh = document.createElement('p');
       paragragh.appendChild(document.createTextNode(msg));
 
       if (index === (Array.length - 1)) {
@@ -30,7 +30,7 @@ export const errHandler = (errors) => {
 
       errorBox.appendChild(paragragh);
 
-      formFields.forEach(field => {
+      formFields.forEach((field) => {
         if (field.name === error.param) {
           field.style.border = '1px solid #C11C1C';
         }
@@ -43,14 +43,14 @@ export const errHandler = (errors) => {
 };
 
 export const validatePost = (form) => {
-  let validationErrors = [];
+  const validationErrors = [];
 
   let firstName = form.get('firstName');
   let lastName = form.get('lastName');
   let userName = form.get('userName');
   let email = form.get('email');
-  let password = form.get('password');
-  let passwordConfirm = form.get('passwordConfirm');
+  const password = form.get('password');
+  const passwordConfirm = form.get('passwordConfirm');
 
   firstName = validator.trim(firstName);
   if (validator.isEmpty(firstName)) {
@@ -84,7 +84,7 @@ export const validatePost = (form) => {
   }
 
   if (validationErrors.length > 0) {
-    return { isValid: false, validationErrors: validationErrors, form: null };
+    return { isValid: false, validationErrors, form: null };
   }
 
   form.set('firstName', firstName);
@@ -93,5 +93,5 @@ export const validatePost = (form) => {
   form.set('email', email);
   form.set('password', password);
   form.set('passwordConfirm', passwordConfirm);
-  return { isValid: true, form: form };
+  return { isValid: true, form };
 };

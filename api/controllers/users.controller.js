@@ -1,15 +1,15 @@
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
+const saltRounds = 10;
 const users = require('../models/users.model');
 
 class usersController {
   // Retrieve all users
   static async getAllUsers(req, res, next) {
     try {
-      let userList = await users.getUsers();
+      const userList = await users.getUsers();
       res.json(userList);
-    } catch(err) {
+    } catch (err) {
       err.resStatus = 500;
       err.clientMessage = { error: 'The users list could not be retrieved' };
       next(err);
@@ -18,34 +18,34 @@ class usersController {
 
   // Retrieve a single user
   static async getUser(req, res, next) {
-    try{
-      let requestId = req.params.userId;
+    try {
+      const requestId = req.params.userId;
       let user = await users.getUser(requestId);
 
       if (user.length === 0) {
         return res.status(404).json({ error: `User with id = ${requestId} was not found` });
       }
 
-      [ user ] = user; // Destructure user from array
-      res.json({ success: true, user: user });
+      [user] = user; // Destructure user from array
+      return res.json({ success: true, user });
     } catch (err) {
       err.resStatus = 500;
       err.clientMessage = { error: 'The user could not be retrieved' };
-      next(err);
+      return next(err);
     }
   }
 
   // Add a user
   static async postUser(req, res, next) {
     try {
-      let userInfo = req.body;
+      const userInfo = req.body;
       delete userInfo.passwordConfirm;
 
       // Check if the user name exists
-      let userNameMatch = await users.findUserName(userInfo.userName);
+      const userNameMatch = await users.findUserName(userInfo.userName);
       if (userNameMatch.length !== 0) {
-        let validationErrors = [{ param: 'userName', msg: 'The username is taken' }];
-        return res.status(422).json({ validationErrors: validationErrors });
+        const validationErrors = [{ param: 'userName', msg: 'The username is taken' }];
+        return res.status(422).json({ validationErrors });
       }
 
       userInfo.password = await bcrypt.hash(userInfo.password, saltRounds); // Hash the password
@@ -53,23 +53,23 @@ class usersController {
       await users.addUser(userInfo); // Store user in DB
       delete userInfo.password;
 
-      res.json({ success: true, message: 'A new user was added' });
-    } catch(err) {
+      return res.json({ success: true, message: 'A new user was added' });
+    } catch (err) {
       err.resStatus = 500;
       err.clientMessage = { error: 'The user could not be added' };
-      next(err);
+      return next(err);
     }
   }
 
   // Update specified fields of a user
   static async updateUser(req, res, next) {
     try {
-      let requestId = req.params.userId;
+      const requestId = req.params.userId;
       if (requestId !== req.user.id) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
 
-      let updateInfo = req.body;
+      const updateInfo = req.body;
 
       // Check for empty req body
       if (Object.keys(updateInfo).length === 0) {
@@ -78,31 +78,31 @@ class usersController {
 
       // Check if the user name exists
       if (updateInfo.userName !== req.user.userName) {
-        let userNameMatch = await users.findUserName(updateInfo.userName);
+        const userNameMatch = await users.findUserName(updateInfo.userName);
         if (userNameMatch.length !== 0) {
-          let validationErrors = [{ param: 'userName', msg: 'The username is taken' }];
-          return res.status(422).json({ validationErrors: validationErrors });
+          const validationErrors = [{ param: 'userName', msg: 'The username is taken' }];
+          return res.status(422).json({ validationErrors });
         }
       }
 
-      let DBResponse = await users.updateUser(requestId, updateInfo);
+      const DBResponse = await users.updateUser(requestId, updateInfo);
 
       if (DBResponse === 0) {
         return res.status(404).json({ error: `User with id = ${requestId} was not found` });
       }
 
-      res.json({ success: true, message: `User with id = ${requestId} was updated` });
+      return res.json({ success: true, message: `User with id = ${requestId} was updated` });
     } catch (err) {
       err.resStatus = 500;
-      err.clientMessage = {error: 'The user could not be updated'};
-      next(err);
+      err.clientMessage = { error: 'The user could not be updated' };
+      return next(err);
     }
   }
 
   // Update a user's password
   static async updatePassword(req, res, next) {
     try {
-      let requestId = req.params.userId;
+      const requestId = req.params.userId;
       if (requestId !== req.user.id) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
@@ -115,18 +115,19 @@ class usersController {
         return res.status(400).json({ error: 'Invalid user id' });
       }
 
-      [ oldPassword ] = oldPassword; // Destructure old password from array
+      [oldPassword] = oldPassword; // Destructure old password from array
       oldPassword = oldPassword.password.toString();
 
-      let passwordMatch = await bcrypt.compare(updateInfo.oldPassword, oldPassword);
+      const passwordMatch = await bcrypt.compare(updateInfo.oldPassword, oldPassword);
 
       if (!passwordMatch) {
-        let validationErrors = [{ param: 'oldPassword', msg: 'Invalid Password' }];
-        return res.status(422).json({ validationErrors: validationErrors });
+        const validationErrors = [{ param: 'oldPassword', msg: 'Invalid Password' }];
+        return res.status(422).json({ validationErrors });
       }
 
-      passwordUpdate.password = await bcrypt.hash(updateInfo.newPassword, saltRounds); // Hash the password
-      let DBResponse = await users.updateUser(requestId, passwordUpdate);
+      // Hash the password
+      passwordUpdate.password = await bcrypt.hash(updateInfo.newPassword, saltRounds);
+      const DBResponse = await users.updateUser(requestId, passwordUpdate);
 
       if (DBResponse === 0) {
         return res.status(404).json({ error: `User with id = ${requestId} was not found` });
@@ -135,33 +136,33 @@ class usersController {
       passwordUpdate = null;
       oldPassword = null;
       updateInfo = null;
-      res.json({ success: true, message: `The password for user with id = ${requestId} was updated` });
+      return res.json({ success: true, message: `The password for user with id = ${requestId} was updated` });
     } catch (err) {
       err.resStatus = 500;
-      err.clientMessage = {error: 'The password could not be updated'};
-      next(err);
+      err.clientMessage = { error: 'The password could not be updated' };
+      return next(err);
     }
   }
 
   // Delete a user
   static async deleteUser(req, res, next) {
     try {
-      let requestId = req.params.userId;
+      const requestId = req.params.userId;
       if (requestId !== req.user.id) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
 
-      let DBResponse = await users.removeUser(requestId);
+      const DBResponse = await users.removeUser(requestId);
 
       if (DBResponse === 0) {
         return res.status(404).json({ error: `User with id = ${requestId} was not found` });
       }
 
-      res.json({ message: `User with id = ${requestId} was deleted`});
+      return res.json({ message: `User with id = ${requestId} was deleted` });
     } catch (err) {
       err.resStatus = 500;
-      err.clientMessage = {error: 'The user could not be deleted'};
-      next(err);
+      err.clientMessage = { error: 'The user could not be deleted' };
+      return next(err);
     }
   }
 }

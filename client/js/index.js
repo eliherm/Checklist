@@ -4,20 +4,23 @@ let logoutLink = null;
 
 if (localStorage.getItem('loginStatus') === 'true') {
   // Remove current links
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     link.remove();
   });
 
-  let navLinksArray = ['tasks', 'account', 'logout'];
+  const navLinksArray = ['tasks', 'account', 'logout'];
 
   // Add new links
-  navLinksArray.forEach(link => {
-    let listItem = document.createElement('li');
-    let anchor = document.createElement('a');
+  navLinksArray.forEach((link) => {
+    const listItem = document.createElement('li');
+    const anchor = document.createElement('a');
 
     anchor.setAttribute('href', `/${link}`);
 
-    anchor.appendChild(document.createTextNode(link.substring(0, 1).toUpperCase() + link.substring(1))); // Capitalize link names
+    // Capitalize link names
+    anchor.appendChild(document.createTextNode(
+      link.substring(0, 1).toUpperCase() + link.substring(1)
+    ));
     listItem.appendChild(anchor);
 
     if (link === 'logout') {

@@ -1,6 +1,14 @@
 // Import local modules
-import { updateMethod } from './modules/ajax.js';
-import { populateFields, validateUpdate, validatePasswords, extractForm, errHandler, resetErrors, resetFields } from './modules/account-util';
+import { updateMethod } from './modules/ajax';
+import {
+  populateFields,
+  validateUpdate,
+  validatePasswords,
+  extractForm,
+  errHandler,
+  resetErrors,
+  resetFields
+} from './modules/account-util';
 
 const profileForm = document.querySelector('.account-profile-form');
 const securityForm = document.querySelector('.account-security-form');
@@ -12,20 +20,20 @@ if (profileForm) {
   populateFields(profileFields);
 
   profileForm.addEventListener('submit', () => {
-    let formData = new FormData(profileForm);
-    let validationResult = validateUpdate(formData);
+    const formData = new FormData(profileForm);
+    const validationResult = validateUpdate(formData);
     successBanner.style.display = 'none';
     resetErrors(profileFields);
 
     if (validationResult.isValid) {
-      let updateInfo = extractForm(validationResult.form);
+      const updateInfo = extractForm(validationResult.form);
 
-      updateMethod('/account/profile/edit', JSON.stringify(updateInfo)).then(serverResponse => {
+      updateMethod('/account/profile/edit', JSON.stringify(updateInfo)).then((serverResponse) => {
         if (serverResponse.success) {
           successBanner.style.display = 'block';
           populateFields(profileFields);
         }
-      }).catch(err => errHandler(err, profileForm, profileFields));
+      }).catch((err) => errHandler(err, profileForm, profileFields));
     } else {
       errHandler(validationResult, profileForm, profileFields);
     }
@@ -36,20 +44,20 @@ if (securityForm) {
   const securityFields = securityForm.querySelectorAll('input');
 
   securityForm.addEventListener('submit', () => {
-    let formData = new FormData(securityForm);
-    let validationResult = validatePasswords(formData);
+    const formData = new FormData(securityForm);
+    const validationResult = validatePasswords(formData);
     successBanner.style.display = 'none';
     resetErrors(securityFields);
 
     if (validationResult.isValid) {
-      let passwordUpdate = extractForm(validationResult.form);
+      const passwordUpdate = extractForm(validationResult.form);
 
-      updateMethod('/account/security/password', JSON.stringify(passwordUpdate)).then(serverResponse => {
+      updateMethod('/account/security/password', JSON.stringify(passwordUpdate)).then((serverResponse) => {
         if (serverResponse.success) {
           successBanner.style.display = 'block';
           resetFields(securityFields);
         }
-      }).catch(err => {
+      }).catch((err) => {
         errHandler(err, securityForm, securityFields);
         resetFields(securityFields);
       });
