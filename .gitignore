@@ -93,12 +93,8 @@ typings/
 # MacOs Finder preferences
 .DS_Store
 
-# Client media
-client/audio
-client/images
-
 # Client build files
-client/src/js/cache
-client/src/js/dist
+client/cache
+client/dist
 
 api/db/er-diagrams

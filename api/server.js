@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 
 // Enable support for parsing request payloads
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: false}));
 
 // Enable ejs templating
 app.set('views', './views');
@@ -50,7 +50,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Serve static files to client
-app.use(express.static(path.join(__dirname, '..', 'client')));
+app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
 // Implement routes
