@@ -1,13 +1,12 @@
 {
   "name": "checklist",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A simple checklist application",
-  "main": "index.js",
   "scripts": {
-    "prestart": "NODE_ENV=development parcel build ./client/src/js/*.js --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
-    "start": "node index.js",
-    "build-watch": "parcel watch ./client/src/js/*.js --out-dir ./client/src/js/dist/ --cache-dir ./client/src/js/cache/",
-    "dev:start": "nodemon index.js --ignore ./client/src/js",
+    "start": "node bin/www",
+    "build": "parcel build ./client/js/*.js ./client/css/*.css ./client/images/*.png ./client/audio/*.wav --out-dir ./client/dist/ --cache-dir ./client/cache/",
+    "build-watch": "parcel watch ./client/js/*.js ./client/css/*.css ./client/images/*.png ./client/audio/*.wav --out-dir ./client/dist/ --cache-dir ./client/cache/",
+    "dev:start": "nodemon bin/www --ignore ./client/js",
     "lint": "eslint ."
   },
   "keywords": [
@@ -17,7 +16,7 @@
   "author": "Elikem Hermon",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^4.0.0",
     "chalk": "^2.4.2",
     "compression": "^1.7.4",
     "connect-redis": "^3.4.2",
@@ -32,6 +31,7 @@
     "mysql2": "^1.7.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "redis": "^3.0.2",
     "regenerator-runtime": "^0.13.3",
     "uuid": "^3.3.3",
     "validator": "^11.1.0"
@@ -39,6 +39,9 @@
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
-    "eslint": "^6.5.1"
+    "cssnano": "^4.1.10",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1"
   }
 }

@@ -6,7 +6,7 @@ function checkValidationErr(req, res, next) {
   if (!validationErrors.isEmpty()) {
     return res.status(422).json({ validationErrors: validationErrors.array() });
   }
-  next();
+  return next();
 }
 
 module.exports = checkValidationErr;

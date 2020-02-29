@@ -8,10 +8,9 @@ export const getMethod = async (url) => {
   });
 
   if (response.ok && response.status === 200) {
-    return await response.json();
-  } else {
-    throw new Error(await response.text());
+    return response.json();
   }
+  throw new Error(await response.text());
 };
 
 export const postMethod = async (url, data) => {
@@ -24,10 +23,9 @@ export const postMethod = async (url, data) => {
   });
 
   if (response.ok && response.status === 200) {
-    return await response.json();
-  } else {
-    return Promise.reject(await response.json());
+    return response.json();
   }
+  return Promise.reject(await response.json());
 };
 
 export const updateMethod = async (url, data) => {
@@ -40,10 +38,9 @@ export const updateMethod = async (url, data) => {
   });
 
   if (response.ok && response.status === 200) {
-    return await response.json();
-  } else {
-    return Promise.reject(await response.json());
+    return response.json();
   }
+  return Promise.reject(await response.json());
 };
 
 export const deleteMethod = async (url) => {
@@ -52,8 +49,7 @@ export const deleteMethod = async (url) => {
   });
 
   if (response.ok && response.status === 200) {
-    return await response.json();
-  } else {
-    return Promise.reject(await response.json());
+    return response.json();
   }
+  return Promise.reject(await response.json());
 };

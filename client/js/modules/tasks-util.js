@@ -14,5 +14,5 @@ export const validatePost = (description) => {
     return { isValid: false, description: null };
   }
   description = validator.escape(description);
-  return { isValid: true, description: description };
+  return { isValid: true, description };
 };

@@ -99,3 +99,8 @@ client/dist
 
 # Design Diagrams
 api/db/er-diagrams
+
+.git
+.gitignore
+LICENSE
+README.md

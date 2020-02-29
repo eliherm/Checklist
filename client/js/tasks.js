@@ -1,7 +1,7 @@
 // Import local modules
-import { getMethod, postMethod } from './modules/ajax.js';
+import { getMethod, postMethod } from './modules/ajax';
 import { displayTask } from './modules/displayTask';
-import { toggleStar, validatePost  } from './modules/tasks-util';
+import { toggleStar, validatePost } from './modules/tasks-util';
 
 const postTaskForm = document.querySelector('.post-task-form');
 const formInput = document.querySelector('#description');
@@ -9,9 +9,9 @@ const postStarred = document.querySelector('#post-star');
 const logoutLink = document.querySelector('.logout-link');
 
 const appendTask = (taskId) => {
-  getMethod(`/tasks/${taskId}`).then(task => {
+  getMethod(`/tasks/${taskId}`).then((task) => {
     displayTask(task[0]);
-  }).catch(err => console.error(err));
+  }).catch((err) => console.error(err));
 };
 
 const clearInputs = (option) => {
@@ -24,8 +24,8 @@ const clearInputs = (option) => {
 };
 
 const submitTask = () => {
-  let formData = new FormData(postTaskForm);
-  let validationResult = validatePost(formData.get('description'));
+  const formData = new FormData(postTaskForm);
+  const validationResult = validatePost(formData.get('description'));
 
   if (validationResult.isValid) {
     formData.set('description', validationResult.description);
@@ -37,7 +37,7 @@ const submitTask = () => {
       formData.set('starred', '0');
     }
 
-    let formToUrl = new URLSearchParams(formData);
+    const formToUrl = new URLSearchParams(formData);
 
     postMethod('/tasks', formToUrl).then((serverResponse) => {
       if (serverResponse.success) {
@@ -46,18 +46,18 @@ const submitTask = () => {
       } else {
         console.error(serverResponse);
       }
-    }).catch(err => console.error(err));
+    }).catch((err) => console.error(err));
   } else {
     clearInputs('post');
   }
 };
 
 // Fetch all tasks
-getMethod('/tasks/all').then(tasks => {
-  tasks.forEach(task => {
+getMethod('/tasks/all').then((tasks) => {
+  tasks.forEach((task) => {
     displayTask(task);
   });
-}).catch(err => console.error(err));
+}).catch((err) => console.error(err));
 
 // Event listeners
 logoutLink.addEventListener('click', () => localStorage.removeItem('loginStatus'), false); // Change login status

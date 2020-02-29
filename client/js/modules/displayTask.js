@@ -5,22 +5,23 @@ import { deleteMethod, updateMethod } from './ajax';
 import { toggleStar, validatePost } from './tasks-util';
 
 // Import sound effects
-let completeAudio = new Audio('/audio/complete.wav');
-let deleteAudio = new Audio('/audio/delete.wav');
+const completeAudio = new Audio('/audio/complete.wav');
+const deleteAudio = new Audio('/audio/delete.wav');
 
 const tasksList = document.querySelector('.tasks-list');
 
+// eslint-disable-next-line import/prefer-default-export
 export const displayTask = (task) => {
   // Create HTML elements
-  let itemDiv = document.createElement('div');
+  const itemDiv = document.createElement('div');
   itemDiv.classList.add('task-item');
 
-  let completedDiv = document.createElement('div');
-  let descriptionDiv = document.createElement('div');
-  let modifyBtnDiv = document.createElement('div');
-  let starredDiv = document.createElement('div');
-  let modifyDiv = document.createElement('div');
-  let modifyForm = document.createElement('form');
+  const completedDiv = document.createElement('div');
+  const descriptionDiv = document.createElement('div');
+  const modifyBtnDiv = document.createElement('div');
+  const starredDiv = document.createElement('div');
+  const modifyDiv = document.createElement('div');
+  const modifyForm = document.createElement('form');
 
   completedDiv.classList.add('completed-box');
   descriptionDiv.classList.add('description-box');
@@ -29,16 +30,17 @@ export const displayTask = (task) => {
   modifyDiv.classList.add('modify-box');
 
   modifyForm.classList.add('modify-task-form');
+  // eslint-disable-next-line no-script-url
   modifyForm.setAttribute('action', 'javascript:');
   modifyForm.setAttribute('autocomplete', 'off');
   modifyForm.setAttribute('novalidate', '');
 
-  let checkboxDiv = document.createElement('div');
-  let descriptionPara = document.createElement('p');
-  let modifyIcon = document.createElement('i');
-  let starredIcon = document.createElement('i');
-  let deleteIcon = document.createElement('i');
-  let modifyInput = document.createElement('input');
+  const checkboxDiv = document.createElement('div');
+  const descriptionPara = document.createElement('p');
+  const modifyIcon = document.createElement('i');
+  const starredIcon = document.createElement('i');
+  const deleteIcon = document.createElement('i');
+  const modifyInput = document.createElement('input');
 
   checkboxDiv.classList.add('checkbox');
   descriptionPara.appendChild(document.createTextNode(validator.unescape(task.description)));
@@ -88,17 +90,18 @@ export const displayTask = (task) => {
     itemDiv.classList.toggle('task-item-complete');
 
     if (checkboxDiv.classList.contains('checkbox-complete')) {
-      completeAudio.play().catch(err => console.error(err));
+      completeAudio.play().catch((err) => console.error(err));
     }
 
+    // eslint-disable-next-line no-unused-expressions
     task.completed === 1 ? task.completed = 0 : task.completed = 1;
-    let taskUpdate = { completed: task.completed };
+    const taskUpdate = { completed: task.completed };
 
-    updateMethod(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then( serverResponse => {
+    updateMethod(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then((serverResponse) => {
       if (!serverResponse.success) {
         console.error(serverResponse);
       }
-    }).catch(err => console.error(err));
+    }).catch((err) => console.error(err));
   }, false);
 
   modifyIcon.addEventListener('click', () => {
@@ -112,42 +115,46 @@ export const displayTask = (task) => {
   starredIcon.addEventListener('click', () => {
     toggleStar(starredIcon);
 
+    // eslint-disable-next-line no-unused-expressions
     task.starred === 1 ? task.starred = 0 : task.starred = 1;
-    let taskUpdate = { starred: task.starred };
+    const taskUpdate = { starred: task.starred };
 
-    updateMethod(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then( serverResponse => {
+    updateMethod(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then((serverResponse) => {
       if (!serverResponse.success) {
         console.error(serverResponse);
       }
-    }).catch(err => console.error(err));
+    }).catch((err) => console.error(err));
   }, false);
 
   deleteIcon.addEventListener('click', () => {
-    deleteMethod(`/tasks/${task.id}`).then( serverResponse => {
+    deleteMethod(`/tasks/${task.id}`).then((serverResponse) => {
       if (serverResponse.success) {
-        deleteAudio.play().catch(err => console.error(err));
+        deleteAudio.play().catch((err) => console.error(err));
         itemDiv.remove(); // No IE support
       } else {
         console.error(serverResponse);
       }
-    }).catch(err => console.error(err));
+    }).catch((err) => console.error(err));
   }, false);
 
   modifyForm.addEventListener('submit', () => {
-    let formData = new FormData(modifyForm);
-    let validationResult = validatePost(formData.get('description'));
+    const formData = new FormData(modifyForm);
+    const validationResult = validatePost(formData.get('description'));
 
     modifyInput.value = '';
 
     if (validationResult.isValid) {
-      let taskUpdate = { description: validationResult.description };
+      const taskUpdate = { description: validationResult.description };
       updateMethod(`/tasks/${task.id}`, JSON.stringify(taskUpdate)).then((serverResponse) => {
         if (serverResponse.success) {
-          descriptionPara.replaceChild(document.createTextNode(validator.unescape(validationResult.description)), descriptionPara.firstChild);
+          descriptionPara.replaceChild(
+            document.createTextNode(validator.unescape(validationResult.description)),
+            descriptionPara.firstChild
+          );
         } else {
           console.error(serverResponse);
         }
-      }).catch(err => console.error(err));
+      }).catch((err) => console.error(err));
     }
   }, false);
 };

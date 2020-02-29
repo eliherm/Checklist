@@ -1,16 +1,16 @@
 // Import local modules
-import { postMethod } from './modules/ajax.js';
-import { validatePost } from './modules/login-util.js';
+import { postMethod } from './modules/ajax';
+import { validatePost } from './modules/login-util';
 
 const loginForm = document.querySelector('.login-form');
 const errorBox = document.querySelector('.error-box');
 
 loginForm.addEventListener('submit', () => {
-  let formData = new FormData(loginForm);
-  let validationResult = validatePost(formData);
+  const formData = new FormData(loginForm);
+  const validationResult = validatePost(formData);
 
   if (validationResult.isValid) {
-    let loginInfo = new URLSearchParams(validationResult.form);
+    const loginInfo = new URLSearchParams(validationResult.form);
 
     postMethod('/login', loginInfo).then((serverResponse) => {
       if (serverResponse.success) {
@@ -19,6 +19,6 @@ loginForm.addEventListener('submit', () => {
       } else {
         errorBox.style.display = 'flex';
       }
-    }).catch(err => console.error(err));
+    }).catch((err) => console.error(err));
   }
 }, false);

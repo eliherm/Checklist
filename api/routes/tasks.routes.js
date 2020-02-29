@@ -1,4 +1,5 @@
 const express = require('express');
+
 const tasksRouter = express.Router();
 const { checkSchema } = require('express-validator');
 
@@ -14,9 +15,9 @@ const updateSchema = require('../lib/validation/tasks-update-schema');
 tasksRouter
   .get('/', isAuthorized, (req, res) => res.render('tasks'))
   .get('/all', isAuthorized, tasksCtrl.getTasks)
-  .get('/:taskId', isAuthorized,checkSchema(idSchema), checkValidationErr, tasksCtrl.getTask)
+  .get('/:taskId', isAuthorized, checkSchema(idSchema), checkValidationErr, tasksCtrl.getTask)
   .post('/', isAuthorized, checkSchema(postSchema), checkValidationErr, tasksCtrl.postTask)
   .put('/:taskId', isAuthorized, checkSchema(updateSchema), checkValidationErr, tasksCtrl.updateTask)
-  .delete('/:taskId', isAuthorized, checkSchema(idSchema), checkValidationErr,  tasksCtrl.deleteTask);
+  .delete('/:taskId', isAuthorized, checkSchema(idSchema), checkValidationErr, tasksCtrl.deleteTask);
 
 module.exports = tasksRouter;

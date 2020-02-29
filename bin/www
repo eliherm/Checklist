@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+
+const http = require('http');
+const os = require('os');
+const cluster = require('cluster');
+const chalk = require('chalk');
+const app = require('../api/server');
+const config = require('../api/config')[process.env.NODE_ENV || 'development'];
+
+// const { log } = config;
+const numCPUs = os.cpus().length;
+
+// Normalize a port into a number, string, or false
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  // eslint-disable-next-line no-restricted-globals
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+// Get port from environment and store in Express
+const port = normalizePort(config.port || '3000');
+app.set('port', port);
+
+// Create HTTP server
+const server = http.createServer(app);
+
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
+
+  // Create a worker for each CPU
+  for (let i = 0; i < numCPUs; i += 1) {
+    cluster.fork();
+  }
+
+  // Listen for terminating workers
+  cluster.on('exit', (worker) => {
+    // Replace the terminated workers
+    console.error(`Worker ${worker.process.pid} just died`);
+    cluster.fork();
+  });
+} else {
+  // Listen on the provided port
+  server.listen(port);
+  server.on('listening', () => {
+    const addr = server.address();
+    const bind = typeof addr === 'string'
+      ? `pipe ${addr}`
+      : `port ${addr.port}`;
+    console.log(chalk.green(`Listening on ${bind}`));
+  });
+}
+
+// Handle server errors
+server.on('error', (error) => {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  const bind = typeof port === 'string'
+    ? `Pipe ${port}`
+    : `Port ${port}`;
+
+  // Handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(`${bind} requires elevated privileges`);
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(`${bind} is already in use`);
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+});

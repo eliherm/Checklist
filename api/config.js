@@ -10,8 +10,7 @@ module.exports = {
     },
     redis: {
       host: process.env.REDIS_HOST,
-      port: process.env.REDIS_PORT,
-      logErrors: true
+      port: process.env.REDIS_PORT
     }
   },
   production: {}

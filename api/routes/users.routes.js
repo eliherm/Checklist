@@ -1,4 +1,5 @@
 const express = require('express');
+
 const usersRouter = express.Router();
 const { checkSchema } = require('express-validator');
 

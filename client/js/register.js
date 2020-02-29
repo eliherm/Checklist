@@ -1,16 +1,16 @@
 // Import local modules
-import { postMethod } from './modules/ajax.js';
+import { postMethod } from './modules/ajax';
 import { errHandler, resetErrors, validatePost } from './modules/register-util';
 
 const registerForm = document.querySelector('.register-form');
 
 registerForm.addEventListener('submit', () => {
-  let formData = new FormData(registerForm);
-  let validationResult = validatePost(formData);
+  const formData = new FormData(registerForm);
+  const validationResult = validatePost(formData);
   resetErrors();
 
   if (validationResult.isValid) {
-    let registerInfo = new URLSearchParams(validationResult.form);
+    const registerInfo = new URLSearchParams(validationResult.form);
 
     postMethod('/users', registerInfo).then((serverResponse) => {
       if (serverResponse.success) {
@@ -18,7 +18,7 @@ registerForm.addEventListener('submit', () => {
       } else {
         errHandler(serverResponse);
       }
-    }).catch(err => errHandler(err));
+    }).catch((err) => errHandler(err));
   } else {
     errHandler(validationResult);
   }
