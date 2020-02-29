@@ -1,5 +1,7 @@
 # Checklist
 
+[![GitHub version](https://badge.fury.io/gh/eliherm%2FChecklist.svg)](https://badge.fury.io/gh/eliherm%2FChecklist)
+
 A dockerized checklist application with an authentication system. The backend is a REST API and sessions are established using cookies.
 
 ## Getting Started
