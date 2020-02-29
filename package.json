@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "A simple checklist application",
   "scripts": {
-    "prestart": "npx parcel build ./client/js/*.js ./client/css/*.css ./client/images/*.png ./client/audio/*.wav --out-dir ./client/dist/ --cache-dir ./client/cache/",
     "start": "node bin/www",
-    "build-watch": "npx parcel watch ./client/js/*.js ./client/css/*.css ./client/images/*.png ./client/audio/*.wav --out-dir ./client/dist/ --cache-dir ./client/cache/",
+    "build": "parcel build ./client/js/*.js ./client/css/*.css ./client/images/*.png ./client/audio/*.wav --out-dir ./client/dist/ --cache-dir ./client/cache/",
+    "build-watch": "parcel watch ./client/js/*.js ./client/css/*.css ./client/images/*.png ./client/audio/*.wav --out-dir ./client/dist/ --cache-dir ./client/cache/",
     "dev:start": "nodemon bin/www --ignore ./client/js",
     "lint": "eslint ."
   },
