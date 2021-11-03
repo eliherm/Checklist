@@ -34,7 +34,7 @@
     "redis": "^3.0.2",
     "regenerator-runtime": "^0.13.3",
     "uuid": "^3.3.3",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
